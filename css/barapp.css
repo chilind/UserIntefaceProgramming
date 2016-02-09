@@ -1,3 +1,26 @@
+html, body {
+	font-size: 14px;
+}
+
+/*
+	Test
+*/
+button.test {
+	position: fixed;
+	top: 1px;
+	left: 1px;
+	width: 100px;
+}
+button#test2 {
+	top: 30px;
+}
+button#test3 {
+	top: 60px;
+}
+button#test4 {
+	top: 90px;
+}
+
 /*
 	Beers
 */
@@ -57,9 +80,6 @@
 */
 #cart {
 	background: #F9F9F9;
-	min-height: 250px;
-	overflow-y: scroll;
-	max-height: 95vh;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
 }
@@ -67,7 +87,50 @@
 #cart .beer {
 	width: 90%;
 }
+/*cart__header*/
+#cart .cart__header {
+	margin-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px dotted rgba(0, 0, 0, 0.35);
+}
 
+#cart > .cart__header > h3 {
+	display: inline-block;
+	margin: 0;
+}
+#cart > .cart__header > .sum {
+	float: right;
+}
+#cart > .cart__header img {
+	width: 25px;
+	height: auto;
+	vertical-align: sub;
+}
+#cart > .cart__header span {
+	margin: 0 8px;
+	font-size: 150%;
+}
+/*cart__controls*/
+#cart > .cart__controls {
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    height: 55px;
+}
+#cart button.cancel {
+	width: 75px;
+	float: left;
+}
+#cart button.pay {
+	width: 75px;
+	float: right;
+}
+/*cart__bucket*/
+#cart .cart__bucket {
+	min-height: 250px;
+	max-height: 80vh;
+	padding-bottom: 40px;
+	overflow-y: scroll;
+}
 
 
 

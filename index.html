@@ -18,7 +18,7 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-	<link rel="manifest" href="/manifest.json">b-157503
+	<link rel="manifest" href="/manifest.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
@@ -30,6 +30,11 @@
 	<link rel="stylesheet" type="text/css" href="css/barapp.css">
 </head>
 <body>
+
+	<button class="test btn btn-default" id="test1">payments_get</button>
+	<button class="test btn btn-default" id="test2">iou_get</button>
+	<button class="test btn btn-default" id="test3">add</button>
+	<button class="test btn btn-default" id="test4">payments_get</button>
 
 	<div class="container">
 		<div class="row">
@@ -45,7 +50,20 @@
 				<h3>Beers</h3>
 			</div>
 			<div class="col-xs-4" id="cart" ondragover="allowDrop(event)" ondrop="drop(event)">
-				<h3>Cart</h3>
+				<div class="cart__header">
+					<h3>Cart</h3>
+					<div class="sum">
+						<img src="img/cartsum.svg">
+						<span>0</span>
+					</div>
+				</div>
+				<div class="cart__controls">
+					<button class="btn btn-danger cancel">Cancel</button>
+					<button class="btn btn-primary pay">Pay</button>
+				</div>
+				<div class="cart__bucket">
+					
+				</div>
 			</div>
 		</div>
 	</div>
