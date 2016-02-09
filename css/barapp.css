@@ -1,0 +1,137 @@
+/*
+	Beers
+*/
+#beers {
+	background: #F9F9F9;
+	border-right: 1px solid black;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.beer {
+	position: relative;
+	display: inline-block;
+	margin: 10px;
+	width: 30%;
+	height: 100px;
+	background: #ccc;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.beer__left {
+	width: 70%;
+	float: left;
+}
+
+.beer__right {
+	width: 30%;
+	float: right;
+}
+
+.beer__left > .beer__name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.beer__left > .beer__name2 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.beer__right > .beer__price {
+	text-align: right;
+}
+
+.beer__right > .beer__count {
+	text-align: right;
+}
+.beer__right > .sold-out {
+	color: red;
+}
+
+/*
+	Cart
+*/
+#cart {
+	background: #F9F9F9;
+	min-height: 250px;
+	overflow-y: scroll;
+	max-height: 95vh;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+#cart .beer {
+	width: 90%;
+}
+
+
+
+
+/*
+	Modal
+*/
+ul.modal-list {
+	padding: 0;
+	list-style: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+	Info hover
+*/
+/*
+#info {
+	opacity: 0.95;
+	position: absolute;
+	left: 200px;
+	top: 0;
+	display: none;
+	z-index: 99;
+	background: #666;
+}
+
+#info h2 {
+	margin-top: 0;
+}
+*/
+
+
+
+
+

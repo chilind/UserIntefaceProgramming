@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">b-157503
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>Bar app</title>
+
+	<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/barapp.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Bar app</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="content">
+		<div class="row">
+			<div class="col-xs-8" id="beers">
+				<h3>Beers</h3>
+			</div>
+			<div class="col-xs-4" id="cart" ondragover="allowDrop(event)" ondrop="drop(event)">
+				<h3>Cart</h3>
+			</div>
+		</div>
+	</div>
+	
+
+	<!-- barModal -->
+	<div class="modal fade" id="barModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	        <h5 class="modal-title2" id="myModalLabel2">Modal title2</h5>
+	      </div>
+	      <div class="modal-body">
+	      	<ul class="modal-list">
+	      		
+	      	</ul>
+	      </div>
+<!-- 	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div> -->
+	    </div>
+	  </div>
+	</div>
+
+
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/barapp.js"></script>
+</body>
+</html>
