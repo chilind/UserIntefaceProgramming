@@ -1,7 +1,3 @@
-// var draggable_beer_id;
-// var draggable_beer;
-// var beer_id;
-
 var admin = "ervtod"; //admin Ervin Todd
 var user = "elepic";//user Elektra Pickle
 
@@ -360,88 +356,8 @@ $(document).ready(function() {
 
 
 
-/*
 
 
 
 
 
-
-function mouseenter(event) {
-	$("#info").empty();
-	console.log($("#info"));
-
-	console.log("MOUSE ENTER");
-	var id = event.target.id;
-	var beer_id = id.substr(2, id.length);
-	$.ajax({
-		url: 'http://pub.jamaica-inn.net/fpdb/api.php?username=ervtod&password=ervtod&action=beer_data_get&beer_id='+beer_id,
-		type: 'GET'
-	})
-	.done(function(result) {
-		var data = result.payload;
-		// console.dir(data);
-		var info = $("<div id='info'></div>");
-		$("#"+id).append(info);
-		info.css({
-			display: 'block',
-			left: $(".beer").first().outerWidth() + 10,
-			top: 0
-		});
-
-		info.append("<h2>"+data[0].namn+"</h2>");
-		info.append("<h4>"+data[0].namn2+"</h4>");
-	})
-	.error(function(xhr, status, error) {
-  		console.log(xhr+", "+status+", "+error);
-	});
-}
-
-function mouseleave(event) {
-	console.log("MOUSE LEAVE");
-	$("#info").remove();
-}
-
-onmouseenter='mouseenter(event)' onmouseleave='mouseleave(event)'
-
-
-
-
-
-
-
-
-
-
-
-			// var $cart_beer = $(ev.target).parent().parent();
-			// var beer_id = $cart_beer.data("id");
-			// var $menu_beer = $("#b-"+beer_id);
-			// var $menu_beer_count = $menu_beer.find(".beer__count");
-
-			// var cart_beer_count = $cart_beer.data('cartcount') + 1;
-			// $cart_beer.data('cartcount', cart_beer_count);
-
-			// console.log("$menu_beer_count.text() ==> "+$menu_beer_count.text());
-			// //if there's beer in stock -> add, else no add
-			// if ($menu_beer_count.text() > 0) {
-
-
-			// 	var cart_beer_price = $cart_beer.data("price");
-				
-			// 	$cart_beer.find(".beer__count").text(cart_beer_count);
-			// 	$cart_beer.find(".beer__price").text(decimalRound(cart_beer_price, cart_beer_count));
-
-			// 	var draggable_beer_count = draggable_beer.data("count");
-			// 	draggable_beer.find(".beer__count").text(draggable_beer_count - cart_beer_count);
-			// } else {
-			// 	console.log("no more of that beer");
-			// }
-			// checkSoldOut();
-			// cartSum();
-
-
-
-
-
-*/
