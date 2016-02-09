@@ -85,7 +85,7 @@ button#test4 {
 }
 
 #cart .beer {
-	width: 90%;
+	width: 88%;
 }
 /*cart__header*/
 #cart .cart__header {
@@ -127,12 +127,44 @@ button#test4 {
 /*cart__bucket*/
 #cart .cart__bucket {
 	min-height: 250px;
-	max-height: 80vh;
+	max-height: 70vh;
 	padding-bottom: 40px;
 	overflow-y: scroll;
 }
+#cart .beer .beer__left .beer__control {
 
-
+}
+#cart .beer .add,
+#cart .beer .sub,
+#cart .beer .remove {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	cursor: pointer;
+	position: absolute;
+	right: -30px;
+}
+#cart .beer .add {
+	background: url("../img/add.svg") no-repeat center center;
+	background-size: 100%;
+	top: 30px;
+	background-color: green;
+	border-radius: 50%;
+}
+#cart .beer .sub {
+	background: url("../img/sub.svg") no-repeat center center;
+	background-size: 100%;
+	top: 60px;
+	background-color: yellow;
+	border-radius: 50%;
+}
+#cart .beer .remove {
+	background: url("../img/remove.svg") no-repeat center center;
+	background-size: 100%;
+	top: 0;
+	background-color: red;
+	border-radius: 50%;
+}
 
 /*
 	Modal
