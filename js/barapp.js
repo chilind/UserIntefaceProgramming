@@ -10,6 +10,7 @@ function printObj(obj) {
 }
 
 function decimalRound(price, cartcount) {
+	// return +(price * cartcount).toFixed(2);
 	return Math.round((price * cartcount) * 100) / 100;
 }
 
@@ -17,11 +18,9 @@ function cartSum() {
 	var cartitems = $("#cart .beer");
 	var sum = 0;
 	$.each(cartitems, function(i, beer) {
-		console.log($(beer).data());
-		console.log($(beer).data("cartcount"));
 		sum += (decimalRound($(beer).data("price"), $(beer).data("cartcount")));
 	});
-	$("#cart .sum span").text(sum);
+	$("#cart .sum span").text(sum.toFixed(2));
 }
 
 function checkSoldOut() {
@@ -39,9 +38,9 @@ function addBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $cart_beer = $("#cart").find("#c-"+beer_id);
 
-	if ($menu_beer.find(".beer__count").text() > 0) {
+	if ($menu_beer.find(".beer__count").text() > 0) { //are there any beers available?
 
-		if ($cart_beer.length) {
+		if ($cart_beer.length) {  //create new element
 			console.log("addBeer: "+$cart_beer.data("namn"));
 			var cart_beer_price = $cart_beer.data("price");
 			var cart_beer_count = $cart_beer.data('cartcount') + 1;
@@ -85,6 +84,9 @@ function addBeer(beer_id) {
 
 			//add to cart
 			$("#cart .cart__bucket").append($cart_beer_copy);
+			$cart_beer_copy.fadeIn("500", function() {
+				console.log("ani done");
+			});
 			$cart_beer_copy.find(".beer__count").text("1");
 			$cart_beer_copy.data($menu_beer.data());
 			$cart_beer_copy.data("cartcount", 1);
@@ -101,29 +103,27 @@ function subBeer(beer_id) {
 	var $cart_beer = $("#c-"+beer_id);
 	var $menu_beer = $("#beers").find("#b-"+beer_id);
 
-	if ($cart_beer.data("cartcount") > 1) { //sub
-		console.log("subBeer: "+$cart_beer.data("namn"));
-		var cart_beer_price = $cart_beer.data("price");
-		var cart_beer_count = $cart_beer.data("cartcount") - 1;
-		$cart_beer.data("cartcount", cart_beer_count);
-		$cart_beer.find(".beer__count").text(cart_beer_count);
-		$cart_beer.find(".beer__price").text(decimalRound(cart_beer_price, cart_beer_count));
+	console.log("subBeer: "+$cart_beer.data("namn"));
+	var cart_beer_price = $cart_beer.data("price");
+	var cart_beer_count = $cart_beer.data("cartcount") - 1;
 
-		var beer_id = $cart_beer.data("id");
-
-		if (cart_beer_count == 0) {
-			remove(beer_id);
-			return;
-		}
-
-		var $menu_beer = $("#b-"+beer_id);
-		var $menu_beer_count = $menu_beer.find(".beer__count");
-		var menu_beer_count = $menu_beer.data("count");
-		$menu_beer.find(".beer__count").text(menu_beer_count - cart_beer_count);
-
-		checkSoldOut();
-		cartSum();
+	if (cart_beer_count == 0) {
+		removeBeer(beer_id);
+		return;
 	}
+
+	$cart_beer.data("cartcount", cart_beer_count);
+	$cart_beer.find(".beer__count").text(cart_beer_count);
+	$cart_beer.find(".beer__price").text(decimalRound(cart_beer_price, cart_beer_count));
+
+	var beer_id = $cart_beer.data("id");
+	var $menu_beer = $("#b-"+beer_id);
+	var $menu_beer_count = $menu_beer.find(".beer__count");
+	var menu_beer_count = $menu_beer.data("count");
+	$menu_beer.find(".beer__count").text(menu_beer_count - cart_beer_count);
+
+	checkSoldOut();
+	cartSum();
 }
 function removeBeer(beer_id) {
 	var $cart_beer = $("#c-"+beer_id);
@@ -131,10 +131,11 @@ function removeBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $menu_beer_count = $menu_beer.find(".beer__count");
 	$menu_beer_count.text($menu_beer.data("count"));
-	$cart_beer.remove();
-
-	checkSoldOut();
-	cartSum();
+	$cart_beer.fadeOut("100", function() {
+		this.remove();
+		checkSoldOut();
+		cartSum();
+	});
 }
 
 
@@ -155,51 +156,8 @@ function dragstart(event) {
 function drop(event) {
 	console.log("drop");
 	var beer_id = event.dataTransfer.getData("text");
-	// var $menu_beer = $("#b-"+beer_id);
-
-	// var $cart_beer = $("#cart").find("#c-"+beer_id);
-	// if ($cart_beer.length) { //id alrdy exist
-		addBeer(beer_id);
-	// } else {
-	// 	var $cart_beer_copy = $menu_beer.clone();
-	// 	$cart_beer_copy.attr('id', 'c-'+beer_id);
-
-	// 	$cart_beer_copy.append("<div class='beer__control'></div>");
-	// 	//BIND REMOVE EVENT
-	// 	$cart_beer_copy.find(".beer__control").append("<div class='remove'></div>");
-	// 	$cart_beer_copy.find(".remove").on("click", function(ev) {
-	// 		removeBeer($(ev.target).parent().parent());
-	// 		ev.stopPropagation(); //stop event bubbling
-	// 	});
-	// 	//BIND SUB EVENT
-	// 	$cart_beer_copy.find(".beer__control").append("<div class='sub'></div>");
-	// 	$cart_beer_copy.find(".sub").on("click", function(ev) {
-	// 		subBeer($(ev.target).parent().parent());
-	// 		ev.stopPropagation(); //stop event bubbling
-	// 	});
-	// 	//BIND ADD EVENT
-	// 	$cart_beer_copy.find(".beer__control").append("<div class='add'></div>");
-	// 	$cart_beer_copy.find(".add").on("click", function(ev) {
-	// 		addBeer($(ev.target).parent().parent());
-	// 		ev.stopPropagation(); //stop event bubbling
-	// 	});
-
-	// 	//add to cart
-	// 	$("#cart .cart__bucket").append($cart_beer_copy);
-	// 	$cart_beer_copy.find(".beer__count").text("1");
-	// 	$cart_beer_copy.data($menu_beer.data());
-	// 	$cart_beer_copy.data("cartcount", 1);
-	// 	console.log($cart_beer_copy.data());
-	// 	//remove count from beers
-	// 	var menu_beer_count = $menu_beer.data("count");
-	// 	$menu_beer.find(".beer__count").text(menu_beer_count - 1);
-
-	// 	checkSoldOut();
-	// 	cartSum();
-	// }
+	addBeer(beer_id);
 }
-
-
 
 
 function clickBeer(event) {
@@ -304,9 +262,10 @@ $(document).ready(function() {
 			console.log($menu_beer_count);
 			console.log($menu_beer.data("count"));
 		}); //each
-		beers.remove();
-		console.log("TRIGGERED");
-		cartSum();
+		beers.fadeOut("200", function() {
+			this.remove();
+			cartSum();
+		});
 	}); //cancel button
 
 	//pay button
@@ -321,8 +280,10 @@ $(document).ready(function() {
 				})
 				.done(function() {
 					console.log(user+" successfully purchased beer with id "+beer_id);
-					beers.remove();
-					cartSum();
+					beers.fadeOut("200", function() {
+						this.remove();
+						cartSum();
+					});
 				})
 				.error(function(xhr, status, error) {
 					console.log(xhr+", "+status+", "+error);

@@ -86,6 +86,7 @@ button#test4 {
 
 #cart .beer {
 	width: 88%;
+	display: none;
 }
 /*cart__header*/
 #cart .cart__header {
@@ -143,6 +144,12 @@ button#test4 {
 	cursor: pointer;
 	position: absolute;
 	right: -30px;
+	transition: all 50ms ease;
+}
+#cart .beer .add:active,
+#cart .beer .sub:active,
+#cart .beer .remove:active {
+	transform: scale(1.1);
 }
 #cart .beer .add {
 	background: url("../img/add.svg") no-repeat center center;
