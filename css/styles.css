@@ -1,0 +1,59 @@
+@charset="UTF";
+body{
+    background-image: url(../img/background.jpg);
+    background-color: #481f02;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Lora', serif;
+}
+.navbar-brand {/* Home button */
+    padding-top: 10px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style:italic;
+    color: white !important;
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+}
+.navbar-brand > img{/* Logo */
+    display: inline-block;
+}
+.navbar-nav a{ /* Menu buttons */
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style:italic;
+    color: white !important;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+.navbar-nav li.active a{/* Active Menu button */
+    background-color: #88e000 !important;
+    text-shadow: 1px 1px 10px rgba(0,0,0,1);
+}
+.container-fluid{ /* Menu bar */
+    background-color: green;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}
+.navbar { /* Exterior part of the menu bar */
+    border: none;
+}
+.container:first-of-type{ /* Only the first container. This is where the Instruccions or title appear */
+    background-color: green;
+    border-radius: 10px 10px 0 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style:italic;
+    color: white;
+}
+.container:first-of-type h1 {
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+}
+#beers{
+    border-top-left-radius: 0;
+}
+#cart{
+    border-top-right-radius: 0;
+}
+.beer__left > .beer__name { /* Title of each drink */
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.1em;
+}

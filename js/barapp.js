@@ -287,8 +287,8 @@ $(document).ready(function() {
 			}
 		}); //each
 	}); //pay button
-
-	$("button#test1").on("click", function() { //payments_get_all
+    //I took the liberty of using your buttons as menu examples, so I changed them to "a" instead of "button"
+	$("a#test1").on("click", function() { //payments_get_all
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+admin+"&password="+admin+"&action=payments_get_all",
 			type: 'GET',
@@ -300,7 +300,7 @@ $(document).ready(function() {
 			console.log(xhr+", "+status+", "+error);
 		});
 	}); //test1
-	$("button#test2").on("click", function() { //iou_get
+	$("a#test2").on("click", function() { //iou_get
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+user+"&action=iou_get",
 			type: 'GET',
@@ -315,7 +315,7 @@ $(document).ready(function() {
 			console.log("fail");
 		});
 	}); //test2
-	$("button#test3").on("click", function() { //inventory_append
+	$("a#test3").on("click", function() { //inventory_append
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+admin+"&password="+admin+"&action=inventory_append&beer_id=154903&amount=1&price=14.10",
 			type: 'POST',
@@ -330,7 +330,7 @@ $(document).ready(function() {
 			console.log("fail");
 		});
 	}); //test3
-	$("button#test4").on("click", function() { //payments_get
+	$("a#test4").on("click", function() { //payments_get
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+user+"&action=payments_get",
 			type: 'POST',

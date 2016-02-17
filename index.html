@@ -28,18 +28,30 @@
 	<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/barapp.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-
-	<button class="test btn btn-default" id="test1">payments_get</button>
-	<button class="test btn btn-default" id="test2">iou_get</button>
-	<button class="test btn btn-default" id="test3">add</button>
-	<button class="test btn btn-default" id="test4">payments_get</button>
-
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            
+            <a class="navbar-brand" href="#"><img src="img/logo.png" />The Flying Dutchman</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#" id="test1">payments_get</a></li>
+          <li><a href="#" id="test2">iou_get</a></li>
+          <li><a href="#" id="test3">add</a></li>
+          <li><a href="#" id="test4">payments_get</a></li>
+        </ul>
+      </div>
+    </nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<h1>Bar app</h1>
+				<h1>Choose your drink</h1>
 			</div>
 		</div>
 	</div>
@@ -51,7 +63,7 @@
 			</div>
 			<div class="col-xs-4" id="cart" ondragover="allowDrop(event)" ondrop="drop(event)">
 				<div class="cart__header">
-					<h3>Cart</h3><!-- Should we use the word "Cart"? Lars mentioned that nobody uses a shopping cart when visiting a real pub  -->
+					<h3>Your drinks</h3><!-- Should we use the word "Cart"? Lars mentioned that nobody uses a shopping cart when visiting a real pub  -->
 					<div class="sum">
 						<img src="img/cartsum.svg">
 						<span>0</span>
