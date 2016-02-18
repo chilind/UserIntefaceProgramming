@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+
+  <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+
+  <!-- Bootstrap -->
+  <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional Bootstrap theme
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  -->
+  <script type="text/javascript" src="js/login.js"></script>
+  <!--<script language="JavaScript" type="text/javascript" src="/js/login.js"></script>-->
+
+
+  <title>Login</title>
+</head>
+<body>
+  <div class="wrapper">
+    <form name="form-signin" class="form-signin" onsubmit="onSubmitForm()">
+      <h2 class="form-signin-heading"> Please login</h2>
+      <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    </form>
+  </div>
+</body>
