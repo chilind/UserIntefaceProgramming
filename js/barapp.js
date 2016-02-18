@@ -30,6 +30,14 @@ function checkSoldOut() {
 	});
 }
 
+/*Function only to display (in console) if an admin or user is logged in*/
+window.onload = function adminOrUser(){
+	var isAdminOrUser = sessionStorage.getItem('adminOrUser');
+	document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString();
+	console.log("Admin or user: ",isAdminOrUser);
+}
+
+
 function addBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $cart_beer = $("#cart").find("#c-"+beer_id);
@@ -346,18 +354,3 @@ $(document).ready(function() {
 		});
 	}); //test4
 }); //doc rdy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
