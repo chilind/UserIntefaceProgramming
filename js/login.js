@@ -15,7 +15,7 @@ function onSubmitForm() {
     if (isUser == isUserPwd) {
       //alert("user");
       sessionStorage.setItem('adminOrUser','user');
-      return true;
+      window.location.replace("index.html");
     }
     else {
       alert("Wrong password!");
@@ -24,11 +24,9 @@ function onSubmitForm() {
   }
   else if (isAdmin > -1) {
     if (isAdmin == isAdminPwd) {
-      console.log("Got here!");
       //alert("admin");
-      //sessionStorage.setItem('adminOrUser','admin');
-      //window.location.replace("index.html");
-      //return true;
+      sessionStorage.setItem('adminOrUser','admin');
+      window.location.replace("index.html");
     }
     else {
       alert("Wrong password!");
@@ -40,27 +38,14 @@ function onSubmitForm() {
     return false;
   }
   /*TODO: Remove tests*/
-  console.log("Got here too!");
+  //console.log("Got here too!");
   alert("admin");
-  return true;
 }
 function isInArray(value, array) {
   return (array.indexOf(value));
 }
 
-/*
-$("#form-signin").submit(console.log("Got here!"));
-//  window.location.replace("index.html");
-*/
-function submitform()
-{
-  document.form-signin.submit();
-  submit(console.log("Got here!"));
-}
-
-
 function loginRemember() {
   //TODO
   var rm = document.forms["form-signin"]["rememberMe"].checked;
-  //console.log("Remember me: ",rm);
 }
