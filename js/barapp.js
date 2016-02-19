@@ -33,7 +33,7 @@ function checkSoldOut() {
 /*Function only to display (in console) if an admin or user is logged in*/
 window.onload = function adminOrUser(){
 	var isAdminOrUser = sessionStorage.getItem('adminOrUser');
-	document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString();
+	// document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString();
 	console.log("Admin or user: ",isAdminOrUser);
 }
 
