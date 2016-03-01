@@ -57,3 +57,6 @@ body{
     font-weight: 900;
     font-size: 1.1em;
 }
+#cart .beer__control > .sub, #cart .beer__control > .add{
+    background-color: white;
+}
