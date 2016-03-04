@@ -172,6 +172,39 @@ button#test4 {
 	background-color: red;
 	border-radius: 50%;
 }
+/*cart__undoRedo*/
+#cart > .cart__undoRedo{
+	background-color: white;
+	padding-top: 30px;
+	padding-bottom: 50px;
+	border-top: 1px solid black;
+}
+.undo-btn {
+  float: left;
+}
+.undo-btn a {
+  cursor: pointer;
+  position: relative;
+  padding: 8px 18px;
+  border: 1px solid #204156;
+}
+.undo-btn a:active {
+	top: 2px;
+}
+.redo-btn {
+  float: right;
+}
+.redo-btn a {
+  cursor: pointer;
+  padding: 8px 18px;
+  border: 1px solid #204156;
+	position: relative;
+}
+.redo-btn a:active {
+	top: 2px;
+}
+
+
 
 /*
 	Modal
@@ -180,30 +213,3 @@ ul.modal-list {
 	padding: 0;
 	list-style: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
