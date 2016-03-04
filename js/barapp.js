@@ -1,8 +1,17 @@
 var admin = "ervtod"; //admin Ervin Todd
 var user = "elepic";//user Elektra Pickle
+var handlerArr = []; //Array for undo/redo
 
 function printObj(obj) {
 	console.log(JSON.stringify(obj, null, 4));
+}
+
+function undoArrHandler(beer_id,type) {
+	if (type == 0) {//1 beer added
+			handlerArr.push([beer_id,type]);
+	}
+	console.log("Beer ID: ", beer_id[1]);
+
 }
 
 function decimalRound(price, cartcount) {
@@ -90,6 +99,7 @@ function addBeer(beer_id) {
 			$("#cart .cart__bucket").append($cart_beer_copy);
 			$cart_beer_copy.fadeIn("500", function() {
 				console.log("ani done");
+				undoArrHandler($cart_beer_copy.data("id"),0);
 			});
 			$cart_beer_copy.find(".beer__count").text("1");
 			$cart_beer_copy.data($menu_beer.data());
@@ -115,6 +125,7 @@ function subBeer(beer_id) {
 		removeBeer(beer_id);
 		return;
 	}
+
 
 	$cart_beer.data("cartcount", cart_beer_count);
 	$cart_beer.find(".beer__count").text(cart_beer_count);
@@ -354,14 +365,33 @@ $(document).ready(function() {
 		});
 	}); //test4
 
+
 	//Undo button action
 	$("#btn_undo").on("click", function() {
-		console.log("undo_button press");
+		if(true){
+			console.log("undo_button press");
+			undo(0);
+		}
+
+		function undo() {
+			var a = handlerArr[(handlerArr.length-1)];
+			if(a[1] == 0){//remove 1 beer
+				subBeer(a[0]);
+			}
+		}
+
+		function undoDrop() {
+			console.log("undoDrop todo");
+		}
 
 	}) //Undo button
 	//Redo button action
 		$("#btn_redo").on("click", function() {
-			console.log("redo_button press");
+			if(1==1){
+				console.log("redo_button press");
+				var cartitems = $("#cart .beer");
+
+			}
 
 		}) //Redo button
 
