@@ -1,17 +1,11 @@
 var admin = "ervtod"; //admin Ervin Todd
 var user = "elepic";//user Elektra Pickle
-var handlerArr = []; //Array for undo/redo
+var undoArr = []; //Array for undos
+var redoArr = []; //Array for redos
+var nrCancelBeers = 0;
 
 function printObj(obj) {
 	console.log(JSON.stringify(obj, null, 4));
-}
-
-function undoArrHandler(beer_id,type) {
-	if (type == 0) {//1 beer added
-			handlerArr.push([beer_id,type]);
-	}
-	/*console.log("Beer ID: ", beer_id[1]);*/
-
 }
 
 function decimalRound(price, cartcount) {
@@ -42,7 +36,7 @@ function checkSoldOut() {
 /*Function only to display (in console) if an admin or user is logged in*/
 window.onload = function adminOrUser(){
 	var isAdminOrUser = sessionStorage.getItem('adminOrUser');
-	// document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString();
+	/* document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString(); */
 	console.log("Admin or user: ",isAdminOrUser);
 }
 
@@ -69,7 +63,7 @@ function addBeer(beer_id) {
 
 			checkSoldOut();
 			cartSum();
-			undoArrHandler($cart_beer.data("id"),0);
+			undoArr.push($cart_beer.data("id"));
 
 		} else {
 			var $cart_beer_copy = $menu_beer.clone();
@@ -108,7 +102,7 @@ function addBeer(beer_id) {
 
 			checkSoldOut();
 			cartSum();
-			undoArrHandler($cart_beer_copy.data("id"),0);
+			undoArr.push($cart_beer_copy.data("id"));
 		}
 	}
 }
@@ -249,8 +243,6 @@ $.ajax({
 
 
 
-
-
 $(document).ready(function() {
 	var cart = $("#cart");
 	var cart_offset = cart.offset().top;
@@ -268,14 +260,18 @@ $(document).ready(function() {
 	//cancel button
 	$("#cart button.cancel").on("click", function() {
 		var beers = $("#cart .beer");
-
+		nrCancelBeers = 0;
 		$.each(beers, function(i, beer) {
+			nrCancelBeers++;
 			var $menu_beer = $("#b-"+$(beer).data("id"));
 			var $menu_beer_count = $menu_beer.find(".beer__count");
+			printObj();
 			$menu_beer_count.text($menu_beer.data("count"));
-			console.log($menu_beer_count);
-			console.log($menu_beer.data("count"));
+			//console.log($menu_beer_count);
+			//console.log($menu_beer.data("count"));
 		}); //each
+		//printObj(beers.data("id"));
+
 		beers.fadeOut("200", function() {
 			this.remove();
 			cartSum();
@@ -367,27 +363,30 @@ $(document).ready(function() {
 
 	//Undo button action
 	$("#btn_undo").on("click", function() {
-		console.log("undo_button press");
-		undo();
-
-		function undo() {
-			var a = handlerArr[(handlerArr.length-1)];
-			if(a[1] == 0){//remove 1 beer
-				subBeer(a[0]);
-				handlerArr.splice(-1,1);
+		var beer_id = undoArr[(undoArr.length-1)];
+			if(nrCancelBeers == 0){//undo add 1 beer
+				redoArr.push(beer_id);
+				subBeer(beer_id);
+				undoArr.splice(-1,1);
 			}
-			/*printObj(handlerArr);*/
+			if(nrCancelBeers > 0){//undo cancel
+				printObj(undoArr);
+				x=undoArr.length;
+				temp = undoArr;
+				undoArr = [];
+				for(i=0;i<x;i++){
+					addBeer(temp[(i)]);
+				}
+				nrCancelBeers = 0;
+				printObj(undoArr);
 		}
-	})
+	})//Undo button
 
 	//Redo button action
-		$("#btn_redo").on("click", function() {
-			if(1==1){
-				console.log("redo_button press");
-				var cartitems = $("#cart .beer");
-			}
-
-		}) //Redo button
+	$("#btn_redo").on("click", function() {
+		addBeer(redoArr[(redoArr.length-1)]);
+		redoArr.splice(-1,1);
+	}) //Redo button
 
 
 }); //doc rdy
