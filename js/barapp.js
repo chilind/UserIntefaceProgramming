@@ -10,7 +10,7 @@ function undoArrHandler(beer_id,type) {
 	if (type == 0) {//1 beer added
 			handlerArr.push([beer_id,type]);
 	}
-	console.log("Beer ID: ", beer_id[1]);
+	/*console.log("Beer ID: ", beer_id[1]);*/
 
 }
 
@@ -50,7 +50,6 @@ window.onload = function adminOrUser(){
 function addBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $cart_beer = $("#cart").find("#c-"+beer_id);
-
 	if ($menu_beer.find(".beer__count").text() > 0) { //are there any beers available?
 
 		if ($cart_beer.length) {  //create new element
@@ -70,11 +69,11 @@ function addBeer(beer_id) {
 
 			checkSoldOut();
 			cartSum();
+			undoArrHandler($cart_beer.data("id"),0);
 
 		} else {
 			var $cart_beer_copy = $menu_beer.clone();
 			$cart_beer_copy.attr('id', 'c-'+beer_id);
-
 			$cart_beer_copy.append("<div class='beer__control'></div>");
 			//BIND REMOVE EVENT
 			$cart_beer_copy.find(".beer__control").append("<div class='remove'></div>");
@@ -99,7 +98,6 @@ function addBeer(beer_id) {
 			$("#cart .cart__bucket").append($cart_beer_copy);
 			$cart_beer_copy.fadeIn("500", function() {
 				console.log("ani done");
-				undoArrHandler($cart_beer_copy.data("id"),0);
 			});
 			$cart_beer_copy.find(".beer__count").text("1");
 			$cart_beer_copy.data($menu_beer.data());
@@ -110,6 +108,7 @@ function addBeer(beer_id) {
 
 			checkSoldOut();
 			cartSum();
+			undoArrHandler($cart_beer_copy.data("id"),0);
 		}
 	}
 }
@@ -368,29 +367,24 @@ $(document).ready(function() {
 
 	//Undo button action
 	$("#btn_undo").on("click", function() {
-		if(true){
-			console.log("undo_button press");
-			undo(0);
-		}
+		console.log("undo_button press");
+		undo();
 
 		function undo() {
 			var a = handlerArr[(handlerArr.length-1)];
 			if(a[1] == 0){//remove 1 beer
 				subBeer(a[0]);
+				handlerArr.splice(-1,1);
 			}
+			/*printObj(handlerArr);*/
 		}
+	})
 
-		function undoDrop() {
-			console.log("undoDrop todo");
-		}
-
-	}) //Undo button
 	//Redo button action
 		$("#btn_redo").on("click", function() {
 			if(1==1){
 				console.log("redo_button press");
 				var cartitems = $("#cart .beer");
-
 			}
 
 		}) //Redo button
