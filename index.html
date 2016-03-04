@@ -23,7 +23,7 @@
 	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<title>Bar app</title>
+	<title data-lang="Bar_app">Bar app</title>
 
 	<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -32,26 +32,32 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/lang.css">
 </head>
 <body>
     <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            
-            <a class="navbar-brand" href="#"><img src="img/logo.png" />The Flying Dutchman</a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img src="img/logo.png" /><span data-lang="The_Flying_Dutchman">The Flying Dutchman</span></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <!-- Are this buttons going to do something in the future or should we remove them? -->
+                <li class="active"><a href="#" id="test1">payments_get</a></li>
+                <li><a href="#" id="test2">iou_get</a></li>
+                <li><a href="#" id="test3">add</a></li>
+                <li><a href="#" id="test4">payments_get</a></li>
+            </ul>
+            <div class="chooseLanguage nav navbar-nav pull-right">
+                <img data-langButton="english" src="languages/English.png" alt="English language" />
+                <img data-langButton="swedish" src="languages/Swedish.png" alt="Swedish language" />
+                <img data-langButton="spanish" src="languages/Spanish.png" alt="Spanish language" />
+            </div>
         </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#" id="test1">payments_get</a></li>
-          <li><a href="#" id="test2">iou_get</a></li>
-          <li><a href="#" id="test3">add</a></li>
-          <li><a href="#" id="test4">payments_get</a></li>
-        </ul>
-      </div>
     </nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<h1>Choose your drink</h1>
+				<h1 data-lang="Choose_your_drink">Choose your drink</h1>
 			</div>
 		</div>
 	</div>
@@ -59,19 +65,19 @@
 	<div class="container" id="content">
 		<div class="row">
 			<div class="col-xs-8" id="beers">
-				<h3>Beers</h3>
+				<h3 data-lang="Beers">Beers</h3>
 			</div>
 			<div class="col-xs-4" id="cart" ondragover="allowDrop(event)" ondrop="drop(event)">
 				<div class="cart__header">
-					<h3>Your drinks</h3><!-- Should we use the word "Cart"? Lars mentioned that nobody uses a shopping cart when visiting a real pub  -->
+					<h3 data-lang="Your_drinks">Your drinks</h3>
 					<div class="sum">
 						<img src="img/cartsum.svg">
 						<span>0</span>
 					</div>
 				</div>
 				<div class="cart__controls">
-					<button class="btn btn-danger cancel">Cancel</button>
-					<button class="btn btn-primary pay">Pay</button>
+					<button data-lang="Cancel" class="btn btn-danger cancel">Cancel</button>
+					<button data-lang="Pay" class="btn btn-primary pay">Pay</button>
 				</div>
 				<div class="cart__bucket">
 					
@@ -106,5 +112,6 @@
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/barapp.js"></script>
+<script type="text/javascript" src="js/lang.js"></script>
 </body>
 </html>
