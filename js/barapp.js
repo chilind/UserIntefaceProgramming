@@ -353,4 +353,17 @@ $(document).ready(function() {
 			console.log("fail");
 		});
 	}); //test4
+
+	//Undo button action
+	$("#btn_undo").on("click", function() {
+		console.log("undo_button press");
+
+	}) //Undo button
+	//Redo button action
+		$("#btn_redo").on("click", function() {
+			console.log("redo_button press");
+
+		}) //Redo button
+
+
 }); //doc rdy
