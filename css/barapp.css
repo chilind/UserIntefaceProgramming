@@ -130,7 +130,8 @@ button#test4 {
 	min-height: 250px;
 	max-height: 70vh;
 	padding-bottom: 40px;
-	overflow-y: hidden;
+	padding-right: 10px;
+	overflow-y: scroll;
 	overflow-x: hidden;
 }
 #cart .beer .beer__left .beer__control {
