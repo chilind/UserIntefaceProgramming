@@ -7,5 +7,7 @@ LANGUAGE_SUPPORT.swedish = {
   Beers: "Öl",
   Your_drinks: "Dina drycker",
   Pay: "Betala",
-  Cancel: "Avbryt"
+  Cancel: "Avbryt",
+  Undo: "Ångra",
+  Redo: "Gör om"
 };

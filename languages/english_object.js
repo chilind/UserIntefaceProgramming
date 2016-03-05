@@ -8,5 +8,7 @@ LANGUAGE_SUPPORT.english = {
   Beers: "Beers",
   Your_drinks: "Your drinks",
   Pay: "Pay",
-  Cancel: "Cancel"
+  Cancel: "Cancel",
+  Undo: "Undo",
+  Redo: "Redo"
 };

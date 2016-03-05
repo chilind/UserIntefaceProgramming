@@ -7,5 +7,7 @@ LANGUAGE_SUPPORT.spanish = {
   Beers: "Cervezas",
   Your_drinks: "Tu orden",
   Pay: "Paga",
-  Cancel: "Cancela"
+  Cancel: "Cancela",
+  Undo: "Deshacer",
+  Redo: "Rehacer"
 };
