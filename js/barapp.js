@@ -60,10 +60,8 @@ function addBeer(beer_id) {
 			var $menu_beer_count = $menu_beer.find(".beer__count");
 			var menu_beer_count = $menu_beer.data("count");
 			$menu_beer.find(".beer__count").text(menu_beer_count - cart_beer_count);
-
 			checkSoldOut();
 			cartSum();
-			undoArr.push($cart_beer.data("id"));
 
 		} else {
 			var $cart_beer_copy = $menu_beer.clone();
@@ -72,18 +70,24 @@ function addBeer(beer_id) {
 			//BIND REMOVE EVENT
 			$cart_beer_copy.find(".beer__control").append("<div class='remove'></div>");
 			$cart_beer_copy.find(".remove").on("click", function(ev) {
+				printObj("addbeer remove");
 				removeBeer($(ev.target).parent().parent().data("id"));
 				ev.stopPropagation(); //stop event bubbling
 			});
 			//BIND SUB EVENT
 			$cart_beer_copy.find(".beer__control").append("<div class='sub'></div>");
 			$cart_beer_copy.find(".sub").on("click", function(ev) {
+				printObj("addbeer sub");
+				undoArr.push([0,$cart_beer_copy.data("id")]);
 				subBeer($(ev.target).parent().parent().data("id"));
 				ev.stopPropagation(); //stop event bubbling
 			});
 			//BIND ADD EVENT
 			$cart_beer_copy.find(".beer__control").append("<div class='add'></div>");
 			$cart_beer_copy.find(".add").on("click", function(ev) {
+				printObj("addbeer add");
+				printObj($cart_beer_copy.data("id"));
+				undoArr.push([1,$cart_beer_copy.data("id")]);
 				addBeer($(ev.target).parent().parent().data("id"));
 				ev.stopPropagation(); //stop event bubbling
 			});
@@ -91,6 +95,9 @@ function addBeer(beer_id) {
 			//add to cart
 			$("#cart .cart__bucket").append($cart_beer_copy);
 			$cart_beer_copy.fadeIn("500", function() {
+				printObj("addbeer to cart");
+				printObj($cart_beer_copy.data("id"));
+				undoArr.push([1,$cart_beer_copy.data("id")]);
 				console.log("ani done");
 			});
 			$cart_beer_copy.find(".beer__count").text("1");
@@ -99,10 +106,8 @@ function addBeer(beer_id) {
 			//remove count from beers
 			var menu_beer_count = $menu_beer.data("count");
 			$menu_beer.find(".beer__count").text(menu_beer_count - 1);
-
 			checkSoldOut();
 			cartSum();
-			undoArr.push($cart_beer_copy.data("id"));
 		}
 	}
 }
@@ -139,6 +144,7 @@ function removeBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $menu_beer_count = $menu_beer.find(".beer__count");
 	$menu_beer_count.text($menu_beer.data("count"));
+	nrCancelBeers = ($cart_beer.data("cartcount"));
 	$cart_beer.fadeOut("100", function() {
 		this.remove();
 		checkSoldOut();
@@ -213,7 +219,7 @@ $.ajax({
 		beer_right;
 	$.each(data.payload, function(i, beerData) {
 		// if (i > 15) return;
-		if (beerData.namn.length > 0) {//data-toggle='modal' data-target='#barModal'
+		if (beerData.namn.length > 0 && beerData.count > 0) {//data-toggle='modal' data-target='#barModal'
 			beer = $("<div id='b-"+beerData.beer_id+"' onclick='clickBeer(event)' class='beer' draggable='true' ondragstart='dragstart(event)'></div>");
 			beer_left = $("<div class='beer__left'></div>");
 			beer_right = $("<div class='beer__right'></div>");
@@ -265,7 +271,6 @@ $(document).ready(function() {
 			nrCancelBeers++;
 			var $menu_beer = $("#b-"+$(beer).data("id"));
 			var $menu_beer_count = $menu_beer.find(".beer__count");
-			printObj();
 			$menu_beer_count.text($menu_beer.data("count"));
 			//console.log($menu_beer_count);
 			//console.log($menu_beer.data("count"));
@@ -363,29 +368,64 @@ $(document).ready(function() {
 
 	//Undo button action
 	$("#btn_undo").on("click", function() {
-		var beer_id = undoArr[(undoArr.length-1)];
-			if(nrCancelBeers == 0){//undo add 1 beer
-				redoArr.push(beer_id);
+		var beer_id = undoArr[(undoArr.length-1)][1];
+		var addOrSub = undoArr[(undoArr.length-1)][0];
+		if(nrCancelBeers == 0){//undo 1 beer
+			if(addOrSub == 0){//1 beer has been removed
+				redoArr.push([1,beer_id])
+				addBeer(beer_id);
+				undoArr.splice(-1,1);
+			}
+			if(addOrSub == 1){//1 beer has been added
+				redoArr.push([0,beer_id]);
 				subBeer(beer_id);
 				undoArr.splice(-1,1);
 			}
-			if(nrCancelBeers > 0){//undo cancel
-				printObj(undoArr);
-				x=undoArr.length;
-				temp = undoArr;
+		}
+		if(nrCancelBeers > 0){//undo many beers
+			if(addOrSub == 1){//Undo cancel
+				x = undoArr.length;
+				tempArr = undoArr;
 				undoArr = [];
-				for(i=0;i<x;i++){
-					addBeer(temp[(i)]);
+				for(i=0; i<x; i++){
+					addBeer(tempArr[i][1]);
 				}
 				nrCancelBeers = 0;
 				printObj(undoArr);
+			}
+			if(addOrSub == 0){//Many of one beer has been removed
+				printObj(undoArr);
+				x = undoArr.length;
+				tempArr = undoArr;
+				undoArr = [];
+				for(i=0; i<x; i++){
+					if(tempArr[i][0] == 1){
+						addBeer(tempArr[i][1]);
+					}
+				}
+				nrCancelBeers = 0;
+				printObj(undoArr);
+			}
 		}
 	})//Undo button
 
 	//Redo button action
 	$("#btn_redo").on("click", function() {
-		addBeer(redoArr[(redoArr.length-1)]);
-		redoArr.splice(-1,1);
+		var beer_id = redoArr[(redoArr.length-1)][1];
+		var addOrSub = redoArr[(redoArr.length-1)][0];
+		if(addOrSub == 0){//redo
+			printObj("1");
+			undoArr.push([1,beer_id]);
+			addBeer(redoArr[(redoArr.length-1)][1]);
+			redoArr.splice(-1,1);
+		}
+		if(addOrSub == 1){//
+			printObj("2");
+			undoArr.push([0,beer_id]);
+			subBeer(redoArr[(redoArr.length-1)][1]);
+			redoArr.splice(-1,1);
+		}
+
 	}) //Redo button
 
 
