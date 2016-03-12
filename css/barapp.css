@@ -24,11 +24,23 @@ button#test4 {
 /*
 	Beers
 */
-#beers {
+#rubric {
 	background: #F9F9F9;
 	border-right: 1px solid black;
-	border-top-left-radius: 8px;
 	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+#beers {
+	background: #F9F9F9;
+}
+.beersRubric {
+	margin-left: 10px;
+}
+.search {
+	float: right;
+	margin-right: 22px;
+	margin-top: 10px;
 }
 
 .beer {

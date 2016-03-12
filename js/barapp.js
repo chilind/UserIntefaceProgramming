@@ -388,5 +388,20 @@ $(document).ready(function() {
 		redoArr.splice(-1,1);
 	}) //Redo button
 
-
 }); //doc rdy
+
+// Search function
+$(".search").keyup(function() {
+  $(".beer").each(function() {
+    var input = $(".search").val().toLowerCase();
+    if (input != "") {
+      if ($(this).data("namn").toLowerCase().indexOf(input) < 0) {
+        $(this).hide();
+      }
+      else {
+        $(this).show();
+      }
+    }
+    else $(this).show();
+  });
+});
