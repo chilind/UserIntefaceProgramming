@@ -42,7 +42,9 @@ button#test4 {
 	margin-right: 22px;
 	margin-top: 10px;
 }
-
+.hideEmpty {
+	margin-right: 22px;
+}
 .beer {
 	position: relative;
 	display: inline-block;

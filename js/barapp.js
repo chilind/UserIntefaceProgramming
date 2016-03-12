@@ -405,3 +405,21 @@ $(".search").keyup(function() {
     else $(this).show();
   });
 });
+
+// Hide out of stock beer
+$('.hideEmpty :checkbox').change(function() {
+	if ($(this).is(':checked')) {
+		$(".beer").each(function() {
+			if(($(this).data("count")) <= 0){
+				$(this).show();
+			}
+		})
+	}
+	else {
+		$(".beer").each(function() {
+			if(($(this).data("count")) <= 0){
+				$(this).hide();
+			}
+		})
+  }
+});
