@@ -38,12 +38,13 @@ button#test4 {
 	margin-left: 10px;
 }
 .search {
-	float: right;
 	margin-right: 22px;
-	margin-top: 10px;
+	margin-top: 16px;
 }
 .hideEmpty {
+	float: right;
 	margin-right: 22px;
+	margin-top: 20px;
 }
 .beer {
 	position: relative;
