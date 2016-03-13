@@ -238,6 +238,13 @@ $.ajax({
 			checkSoldOut();
 		}
 	});
+	$(".beer").each(function() {
+		console.log("got here!!");
+		if(($(this).data("count")) <= 0){
+			$(this).hide();
+			hidden = true;
+		}
+	});
 })
 .error(function(xhr, status, error) {
 	console.log(xhr+", "+status+", "+error);
