@@ -38,16 +38,14 @@ button#test4 {
 	margin-left: 10px;
 }
 .search {
-	margin-right: 22px;
 	margin-top: 16px;
 }
 .hideEmpty {
-	display: inline-block;
-	margin-right: 22px;
-	margin-top: 20px;
+	margin-top: 16px;
 }
 .langFix {
-	width: 95%;
+	width: 100%;
+	margin-left: 20px;
 }
 
 .checkboxClass{
