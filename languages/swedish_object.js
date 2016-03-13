@@ -17,5 +17,6 @@ LANGUAGE_SUPPORT.swedish = {
     Type:"Typ",
     Price:"Pris",
     From:"Från",
-    Producer:"Producent"
+    Producer:"Producent",
+    Show_beers:"Visa öl som är slut på lager"
 };

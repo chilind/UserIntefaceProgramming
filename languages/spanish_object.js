@@ -17,5 +17,6 @@ LANGUAGE_SUPPORT.spanish = {
     Type:"Tipo",
     Price:"Precio",
     From:"Origen",
-    Producer:"Productor"
+    Producer:"Productor",
+    Show_beers:"Mostrar cervezas que están fuera de stock"
 };

@@ -42,10 +42,18 @@ button#test4 {
 	margin-top: 16px;
 }
 .hideEmpty {
-	float: right;
+	display: inline-block;
 	margin-right: 22px;
 	margin-top: 20px;
 }
+.langFix {
+	width: 95%;
+}
+
+.checkboxClass{
+	float: left;
+}
+
 .beer {
 	position: relative;
 	display: inline-block;

@@ -18,5 +18,6 @@ LANGUAGE_SUPPORT.english = {
     Type:"Type",
     Price:"Price",
     From:"From",
-    Producer:"Producer"
+    Producer:"Producer",
+    Show_beers:"Show beers that are out of stock"
 };
