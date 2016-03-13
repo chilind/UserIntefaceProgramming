@@ -5,7 +5,7 @@ LANGUAGE_SUPPORT.spanish = {
     Please_login:"Por favor, ingrese",
     Bar_app: "Aplicación del bar",
     Choose_your_drink: "Escoge tu bebida",
-    Beers: "Cervezas",
+    Beers: "Bebidas",
     Your_drinks: "Tu orden",
     Pay: "Paga",
     Cancel: "Cancela",

@@ -5,7 +5,7 @@ LANGUAGE_SUPPORT.swedish = {
     Please_login:"Vänligen logga in",
     Bar_app: "Bar app",
     Choose_your_drink: "Välj din drink",
-    Beers: "Öl",
+    Beers: "Drycker",
     Your_drinks: "Dina drycker",
     Pay: "Betala",
     Cancel: "Avbryt",
