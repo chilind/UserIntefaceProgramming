@@ -247,17 +247,19 @@ ul.modal-list {
 body[data-admin="true"] .adminPanel{
     display: block;
     clear: both;
+    padding-bottom: 1.5em;
+    margin: 10px;
 }
-body[data-admin="true"] .beer.adminPanel{
+body[data-admin="true"] .mainControl.adminPanel{
     background-color: white;
-    border: 1px dashed #5bc0de;
+    border: 1px dashed rgba(17, 68, 33, 0.98);
     width: auto;
     height: auto;
 }
-.beer.adminPanel .beer__left, .beer.adminPanel .beer__right{
+.adminPanel .beer__left, .mainControl.adminPanel .beer__right{
     width: auto;
 }
-.beer.adminPanel > button{
+.mainControl.adminPanel > button{
     display: block;
     clear: both;
     float: none;
