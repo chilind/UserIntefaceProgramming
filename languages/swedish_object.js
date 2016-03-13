@@ -1,5 +1,6 @@
 LANGUAGE_SUPPORT.swedish = {
     The_Flying_Dutchman:"Den flygande holländaren",
+    Welcome:"Välkommen!",
     Login:"Logga in",
     Please_login:"Vänligen logga in",
     Bar_app: "Bar app",
@@ -18,5 +19,7 @@ LANGUAGE_SUPPORT.swedish = {
     Price:"Pris",
     From:"Från",
     Producer:"Producent",
-    Show_beers:"Visa öl som är slut på lager"
+    Show_beers:"Visa öl som är slut på lager",
+    register_beer:"Lägg till",
+    add_type:"Lägg en annan typ"
 };

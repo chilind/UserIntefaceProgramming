@@ -39,7 +39,7 @@ window.onload = function adminOrUser(){
 	var isAdminOrUser = sessionStorage.getItem('adminOrUser');
 	/* document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString(); */
 	console.log("Admin or user: ",isAdminOrUser);
-	if(isAdminOrUser){
+	if(isAdminOrUser === "admin"){
         document.body.setAttribute("data-admin","true");
     }
 };
@@ -316,7 +316,7 @@ $(document).ready(function() {
 			for (var i = 0; i < $(beer).data("cartcount"); i++) {
 				$.ajax({
 					url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+user+"&act ion=purchases_append&=beer_id="+beer_id,
-					type: 'POST',
+					type: 'POST'
 				})
 				.done(function() {
 					console.log(user+" successfully purchased beer with id "+beer_id);
@@ -332,10 +332,11 @@ $(document).ready(function() {
 		}); //each
 	}); //pay button
     //I took the liberty of using your buttons as menu examples, so I changed them to "a" instead of "button"
+    /*
 	$("a#test1").on("click", function() { //payments_get_all
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+admin+"&password="+admin+"&action=payments_get_all",
-			type: 'GET',
+			type: 'GET'
 		})
 		.done(function(data) {
 			printObj(data);
@@ -347,7 +348,7 @@ $(document).ready(function() {
 	$("a#test2").on("click", function() { //iou_get
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+user+"&action=iou_get",
-			type: 'GET',
+			type: 'GET'
 		})
 		.done(function(data) {
 			printObj(data);
@@ -362,7 +363,7 @@ $(document).ready(function() {
 	$("a#test3").on("click", function() { //inventory_append
 		$.ajax({
 			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+admin+"&password="+admin+"&action=inventory_append&beer_id=154903&amount=1&price=14.10",
-			type: 'POST',
+			type: 'POST'
 		})
 		.done(function(data) {
 			printObj(data);
@@ -389,7 +390,7 @@ $(document).ready(function() {
 			console.log("fail");
 		});
 	}); //test4
-
+    */
 
 	//Undo button action
 	$("#btn_undo").on("click", function() {
@@ -472,3 +473,44 @@ $('.hideEmpty :checkbox').change(function() {
 		})
   }
 });
+//Add beer button function for the admin
+var clickAddBeerAdmin = (function(){
+    var customID = 0;
+    return function(e){
+        var beers = $("#beers");
+        var creator = $(e.currentTarget.parentNode);
+        var beer;
+        var beer_left;
+        var beer_right;
+        var beer_admin;
+        var beerData = {
+            beer_id:"userDefined_" + (++customID),
+            namn:creator.find("#AdminBeerName").val(),
+            namn2:creator.find("#AdminBeerName2").val(),
+            price:creator.find("#AdminPrice").val(),
+            count:creator.find("#AdminCount").val()
+        };
+        beer = $("<div id='b-"+beerData.beer_id+"' class='beer' draggable='true' ondragstart='dragstart(event)'></div>");//Removed onclick='clickBeer(event)' because it is not connected to the database
+        beer_left = $("<div class='beer__left'></div>");
+        beer_right = $("<div class='beer__right'></div>");
+        beer_admin = $("<div class='adminPanel'><button class='add' onclick='modifyQuantity(event)'>+</button><button class='remove' onclick='modifyQuantity(event)'>-</button></div>");
+        beer.append(beer_left);
+        beer.append(beer_right);
+        beer.append(beer_admin);
+        beer_left.append('<div class="beer__name">'+beerData.namn+'</div>');
+        beer_left.append('<div class="beer__name2">'+beerData.namn2+'</div>');
+        beer_right.append('<div class="beer__price">'+beerData.price+'</div>');
+        beer_right.append('<div class="beer__count">'+beerData.count+'</div>');
+        //beers.prepend(beer);
+        creator.after(beer);
+        beer.data({'id': beerData.beer_id,
+            'namn': beerData.namn,
+            'namn2': beerData.namn2,
+            'price': beerData.price,
+            'count': beerData.count,
+            'cartcount': 0
+        });
+        checkSoldOut();
+
+    }
+})();

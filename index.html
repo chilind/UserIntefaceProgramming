@@ -84,6 +84,20 @@
 				  </label>
 				</div>
 				<div class="col-xs-12" id="beers">
+                    <div id="addBeer" class="beer adminPanel col-xs-12">
+                        <h3 data-lang="add_type">Add another type</h3>
+                        <div class="beer__left">
+                            <div class="beer__name"><input id="AdminBeerName" type="text" name="beer_name" placeholder="Name" /></div>
+                            <div class="beer__name2"><input id="AdminBeerName2" type="text" name="beer_name2" placeholder="Short description" /></div>
+                        </div>
+                        <div class="beer__right">
+                            <div class="beer__price"><input id="AdminPrice" type="number" min="1" step="any" name="beer_price" placeholder="Price" /></div>
+                            <div class="adminBeer__count"><input id="AdminCount" type="number" name="beer_name" placeholder="Amount" /></div>
+                        </div>
+                        <button data-lang="register_beer" onclick="clickAddBeerAdmin(event)">
+                            Add
+                        </button>
+                    </div>
 				</div>
 			</div>
 			<div class="col-xs-4" id="cart" ondragover="allowDrop(event)" ondrop="drop(event)">

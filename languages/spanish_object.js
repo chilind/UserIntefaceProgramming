@@ -1,5 +1,6 @@
 LANGUAGE_SUPPORT.spanish = {
     The_Flying_Dutchman:"El holandés volador",
+    Welcome:"¡Bienvenid@!",
     Login:"Acceso",
     Please_login:"Por favor, ingrese",
     Bar_app: "Aplicación del bar",
@@ -18,5 +19,7 @@ LANGUAGE_SUPPORT.spanish = {
     Price:"Precio",
     From:"Origen",
     Producer:"Productor",
-    Show_beers:"Mostrar cervezas que están fuera de stock"
+    Show_beers:"Mostrar cervezas no disponibles",
+    register_beer:"Añadir",
+    add_type:"Agregar otra marca"
 };
