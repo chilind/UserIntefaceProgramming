@@ -6,6 +6,8 @@
     box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     opacity: 0.5;
     cursor: pointer;
+    width: 40px;
+    height: auto;
 }
 .chooseLanguage img:hover{
     box-shadow: 3px 3px 3px rgba(0,0,0,1);
@@ -16,4 +18,7 @@
     -webkit-transform: scale(1.2,1.2); /* Safari */
     transform: scale(1.2,1.2);
     margin: 8px;
+}
+.navbar-nav>li{
+  float: right;
 }
