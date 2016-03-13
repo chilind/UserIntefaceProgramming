@@ -483,12 +483,13 @@ var clickAddBeerAdmin = (function(){
         var beer_left;
         var beer_right;
         var beer_admin;
-        var beerData = {
+        var fields = [creator.find("#AdminBeerName"), creator.find("#AdminBeerName2"), creator.find("#AdminPrice"), creator.find("#AdminCount")];
+		var beerData = {
             beer_id:"userDefined_" + (++customID),
-            namn:creator.find("#AdminBeerName").val(),
-            namn2:creator.find("#AdminBeerName2").val(),
-            price:creator.find("#AdminPrice").val(),
-            count:creator.find("#AdminCount").val()
+            namn:fields[0].val(),
+            namn2:fields[1].val(),
+            price:fields[2].val(),
+            count:fields[3].val()
         };
         beer = $("<div id='b-"+beerData.beer_id+"' class='beer' draggable='true' ondragstart='dragstart(event)'></div>");//Removed onclick='clickBeer(event)' because it is not connected to the database
         beer_left = $("<div class='beer__left'></div>");
@@ -511,6 +512,8 @@ var clickAddBeerAdmin = (function(){
             'cartcount': 0
         });
         checkSoldOut();
-
+        $.each(fields, function(index, element){
+            element.val("");
+        });
     }
 })();
