@@ -3,6 +3,7 @@ var user = "elepic";//user Elektra Pickle
 var undoArr = []; //Array for undos
 var redoArr = []; //Array for redos
 var nrCancelBeers = 0;
+var hidden = false;
 
 function printObj(obj) {
 	console.log(JSON.stringify(obj, null, 4));
@@ -395,14 +396,28 @@ $(".search").keyup(function() {
   $(".beer").each(function() {
     var input = $(".search").val().toLowerCase();
     if (input != "") {
-      if ($(this).data("namn").toLowerCase().indexOf(input) < 0) {
-        $(this).hide();
-      }
-      else {
-        $(this).show();
-      }
-    }
-    else $(this).show();
+			if(hidden == false){//all beers are showed
+	      if ($(this).data("namn").toLowerCase().indexOf(input) < 0) {
+	        $(this).hide();//hides all beers that do not have input in them
+	      }
+				else {
+					$(this).show();
+				}
+	    }
+			else{//hidden beers
+	      if ($(this).data("namn").toLowerCase().indexOf(input) < 0) {
+	        $(this).hide();//hides all beers that do not have input in them
+	      }
+				else{
+		      if ($(this).data("count") <= 0) {
+		        $(this).hide();
+	      	}
+					else {
+						$(this).show();
+					}
+				}
+			}
+		}
   });
 });
 
@@ -412,6 +427,7 @@ $('.hideEmpty :checkbox').change(function() {
 		$(".beer").each(function() {
 			if(($(this).data("count")) <= 0){
 				$(this).show();
+				hidden = false;
 			}
 		})
 	}
@@ -419,6 +435,10 @@ $('.hideEmpty :checkbox').change(function() {
 		$(".beer").each(function() {
 			if(($(this).data("count")) <= 0){
 				$(this).hide();
+				hidden = true;
+			}
+			else{
+				$(this).show();
 			}
 		})
   }
