@@ -39,7 +39,10 @@ window.onload = function adminOrUser(){
 	var isAdminOrUser = sessionStorage.getItem('adminOrUser');
 	/* document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString(); */
 	console.log("Admin or user: ",isAdminOrUser);
-}
+	if(isAdminOrUser){
+        document.body.setAttribute("data-admin","true");
+    }
+};
 
 
 function addBeer(beer_id) {
@@ -213,14 +216,17 @@ $.ajax({
 	var beer,
 		beer_left,
 		beer_right;
+    var beer_admin;
 	$.each(data.payload, function(i, beerData) {
 		// if (i > 15) return;
 		if (beerData.namn.length > 0) {//data-toggle='modal' data-target='#barModal'
 			beer = $("<div id='b-"+beerData.beer_id+"' onclick='clickBeer(event)' class='beer' draggable='true' ondragstart='dragstart(event)'></div>");
 			beer_left = $("<div class='beer__left'></div>");
 			beer_right = $("<div class='beer__right'></div>");
+            beer_admin = $("<div class='adminPanel'><button class='add' onclick='modifyQuantity(event)'>+</button><button class='remove' onclick='modifyQuantity(event)'>-</button></div>");
 			beer.append(beer_left);
 			beer.append(beer_right);
+            beer.append(beer_admin);
 			beer_left.append('<div class="beer__name">'+beerData.namn+'</div>');
 			beer_left.append('<div class="beer__name2">'+beerData.namn2+'</div>');
 			beer_right.append('<div class="beer__price">'+beerData.price+'</div>');
@@ -249,6 +255,21 @@ $.ajax({
 .error(function(xhr, status, error) {
 	console.log(xhr+", "+status+", "+error);
 });
+function modifyQuantity(event){
+    event.stopPropagation();
+    event.preventDefault();
+    var beerObject = $(event.currentTarget.parentNode.parentNode);
+    var quantity = parseInt(beerObject.data("count"));
+    var getAction = event.currentTarget.className;
+    if(getAction === "add"){
+        quantity++;
+    } else if(getAction === "remove") {
+        quantity--;
+    }
+    beerObject.data("count", quantity);
+    beerObject.find(".beer__count").text(quantity);
+    checkSoldOut();
+}
 
 
 
