@@ -170,7 +170,7 @@ function drop(event) {
 
 
 function clickBeer(event) {
-	var beer_id = $(event.target).data("id");
+	var beer_id = $(event.currentTarget).data("id");
 	$.ajax({
 		url: 'http://pub.jamaica-inn.net/fpdb/api.php?username='+user+'&password='+user+'&action=beer_data_get&beer_id='+beer_id,
 		type: 'GET'
@@ -181,16 +181,17 @@ function clickBeer(event) {
 		modal.find(".modal-title").text(data.namn);
 		modal.find(".modal-title2").text(data.namn2);
 		var modal_list = modal.find(".modal-list");
-		modal_list.append("<li>Alkoholhalt: "+data.alkoholhalt+"</li>");
-
-		modal_list.append("<li>Ekologisk: "+ (data.ekologisk == 0 ? "nej" : "ja") +"</li>");
-		modal_list.append("<li>Typ: "+data.varugrupp+"</li>");
-		modal_list.append("<li>Pris: "+data.prisinklmoms+"</li>");
-		modal_list.append("<li>Från: "+data.ursprungslandnamn+"</li>");
-		modal_list.append("<li>Producent: "+data.producent+"</li>");
+        //Obtains previously chosen language (lang.js) and stores the reference for use within this function
+        var selectedLanguage = LANGUAGE_SUPPORT[preferences.getItem('preferedLanguage')];
+		modal_list.append("<li>" + selectedLanguage.Alkoholhalt + ": <b>" + data.alkoholhalt + "</b></li>");
+		modal_list.append("<li>" + selectedLanguage.Ekologisk + ": <b>"+ (data.ekologisk == 0 ? selectedLanguage.No : selectedLanguage.Yes) +"</b></li>");
+		modal_list.append("<li>" + selectedLanguage.Type + ": <b>"+data.varugrupp+"</b></li>");
+		modal_list.append("<li>" + selectedLanguage.Price + ": <b>"+data.prisinklmoms+"</b></li>");
+		modal_list.append("<li>" + selectedLanguage.From + ": <b>"+ (data.ursprungslandnamn === undefined ? "" : data.ursprungslandnamn) +"</b></li>");
+		modal_list.append("<li>" + selectedLanguage.Producer + ": <b>"+data.producent+"</b></li>");
 
 		//data loaded - show modal
-		$("#barModal").modal("show");
+		modal.modal("show");
 	})
 	.error(function(xhr, status, error) {
   		console.log(xhr+", "+status+", "+error);

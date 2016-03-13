@@ -2,29 +2,29 @@
  * Created by Adib Abud Jaso on 03/03/16.
  * adibabud@gmail.com
  */
+    //This object would be used when localStorage is not available, but only saves the preference temporarily.
+    //Made public to be available in other scripts
+var preferences = (function(){
+    var notSaved = {};
+    var getItem = function(name){
+        if(window.localStorage !== undefined){
+            return localStorage.getItem(name);
+        } else {
+            return notSaved[name];
+        }
+    };
+    var setItem = function (name, value) {
+        if(window.localStorage !== undefined){
+            localStorage.setItem(name, value);
+        } else {
+            notSaved[name] = value;
+        }
+    };
+    return {getItem:getItem, setItem:setItem}
+})();
+
+
 (function(){
-
-    //This object would be used when localStorage is not available, but only saves the preference temporarily
-    var preferences = (function(){
-        var notSaved = {};
-        var getItem = function(name){
-            if(window.localStorage !== undefined){
-                return localStorage.getItem(name);
-            } else {
-                return notSaved[name];
-            }
-        };
-        var setItem = function (name, value) {
-            if(window.localStorage !== undefined){
-                localStorage.setItem(name, value);
-            } else {
-                notSaved[name] = value;
-            }
-        };
-        return {getItem:getItem, setItem:setItem}
-    })();
-
-
     //Defaults to English for the first time or localstorage cleared
     if(preferences.getItem("preferedLanguage") == null){
         preferences.setItem("preferedLanguage", "english");
