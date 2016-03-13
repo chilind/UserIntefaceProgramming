@@ -248,3 +248,17 @@ body[data-admin="true"] .adminPanel{
     display: block;
     clear: both;
 }
+body[data-admin="true"] .beer.adminPanel{
+    background-color: white;
+    border: 1px dashed #5bc0de;
+    width: auto;
+    height: auto;
+}
+.beer.adminPanel .beer__left, .beer.adminPanel .beer__right{
+    width: auto;
+}
+.beer.adminPanel > button{
+    display: block;
+    clear: both;
+    float: none;
+}

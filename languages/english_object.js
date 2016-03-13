@@ -1,6 +1,7 @@
 var LANGUAGE_SUPPORT = {};
 LANGUAGE_SUPPORT.english = {
     The_Flying_Dutchman:"The Flying Dutchman",
+    Welcome:"Welcome!",
     Login:"Login",
     Please_login:"Please login",
     Bar_app: "Bar app",
@@ -19,5 +20,7 @@ LANGUAGE_SUPPORT.english = {
     Price:"Price",
     From:"From",
     Producer:"Producer",
-    Show_beers:"Show beers that are out of stock"
+    Show_beers:"Show beers that are out of stock",
+    register_beer:"Add",
+    add_type:"Add another type"
 };
