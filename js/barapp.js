@@ -3,6 +3,7 @@ var user = "elepic";//user Elektra Pickle
 var undoArr = []; //Array for undos
 var redoArr = []; //Array for redos
 var nrCancelBeers = 0;
+var nrRmBeers = ["",0];
 var hidden = false;
 
 function printObj(obj) {
@@ -67,7 +68,7 @@ function addBeer(beer_id) {
 
 			checkSoldOut();
 			cartSum();
-			undoArr.push($cart_beer.data("id"));
+			undoArr.push([$cart_beer.data("id"),1]);
 
 		} else {
 			var $cart_beer_copy = $menu_beer.clone();
@@ -76,6 +77,8 @@ function addBeer(beer_id) {
 			//BIND REMOVE EVENT
 			$cart_beer_copy.find(".beer__control").append("<div class='remove'></div>");
 			$cart_beer_copy.find(".remove").on("click", function(ev) {
+				printObj("remove addbeer");
+				nrRmBeers = [($(ev.target).parent().parent().data("id")),($(ev.target).parent().parent().data("cartcount"))];
 				removeBeer($(ev.target).parent().parent().data("id"));
 				ev.stopPropagation(); //stop event bubbling
 			});
@@ -106,7 +109,7 @@ function addBeer(beer_id) {
 
 			checkSoldOut();
 			cartSum();
-			undoArr.push($cart_beer_copy.data("id"));
+			undoArr.push([$cart_beer_copy.data("id"),1]);
 		}
 	}
 }
@@ -245,7 +248,6 @@ $.ajax({
 		}
 	});
 	$(".beer").each(function() {
-		console.log("got here!!");
 		if(($(this).data("count")) <= 0){
 			$(this).hide();
 			hidden = true;
@@ -292,10 +294,9 @@ $(document).ready(function() {
 		var beers = $("#cart .beer");
 		nrCancelBeers = 0;
 		$.each(beers, function(i, beer) {
-			nrCancelBeers++;
+			nrCancelBeers = nrCancelBeers + beers.data("cartcount");
 			var $menu_beer = $("#b-"+$(beer).data("id"));
 			var $menu_beer_count = $menu_beer.find(".beer__count");
-			printObj();
 			$menu_beer_count.text($menu_beer.data("count"));
 			//console.log($menu_beer_count);
 			//console.log($menu_beer.data("count"));
@@ -303,7 +304,10 @@ $(document).ready(function() {
 		//printObj(beers.data("id"));
 
 		beers.fadeOut("200", function() {
-			this.remove();
+			printObj($(this).data("id"));
+			undoArr.push([$(this).data("id"),0]);
+			subBeer($(this).data("id"));
+			//this.remove();
 			cartSum();
 		});
 	}); //cancel button
@@ -394,31 +398,76 @@ $(document).ready(function() {
 
 	//Undo button action
 	$("#btn_undo").on("click", function() {
-		var beer_id = undoArr[(undoArr.length-1)];
-			if(nrCancelBeers == 0){//undo add 1 beer
-				redoArr.push(beer_id);
-				subBeer(beer_id);
+		var beer_id = undoArr[(undoArr.length-1)][0];
+		var addSub = undoArr[(undoArr.length-1)][1];
+		if(nrCancelBeers > 0){//undo cancel
+			/* TODO Undo Cancel
+			beerIDs = [];
+			for (i = 1; i <= nrCancelBeers; i++){//get beer IDs
+				beerIDs.push(undoArr[(undoArr.length-i)][0]);
+			}
+			printObj(beerIDs);
+			for (x = 0; x < beerIDs.length; x++){
+				printObj(beerIDs[x]);
+				addBeer(beerIDs[x]);
+				redoArr.push([beerIDs[x],1]);
+			}
+			for (i = 0; i < nrCancelBeers; i++){
 				undoArr.splice(-1,1);
 			}
-			if(nrCancelBeers > 0){//undo cancel
-				printObj(undoArr);
-				x=undoArr.length;
-				temp = undoArr;
-				undoArr = [];
-				for(i=0;i<x;i++){
-					addBeer(temp[(i)]);
-				}
-				nrCancelBeers = 0;
-				printObj(undoArr);
+			nrCancelBeers = 0;
+			*/
+		}
+
+		else if(nrRmBeers[1] > 0){//undo remove
+			nrUndos = nrRmBeers[1];
+			/*
+			abc = [];
+			for (i = 0; i < undoArr.length; i++){
+				if(undoArr[i][0] == nrRmBeers[0] && undoArr[i][1] == 1){
+					abc.push(i);
+				};
+			};
+			*/
+			for (i = 0; i < nrRmBeers[1]; i++){
+				addBeer(nrRmBeers[0]);
+				redoArr.push([beer_id,1]);
+			}
+			for (i = 0; i < nrUndos; i++){
+				undoArr.splice(-1,1);
+			}
+			nrRmBeers = ["",0];
+		}
+
+		else if(addSub == 0){//undo sub 1 beer
+			addBeer(beer_id);
+			redoArr.push([beer_id,1]);
+			undoArr.splice(-1,1);
+		}
+
+		else if(addSub == 1){//undo add 1 beer
+			subBeer(beer_id);
+			redoArr.push([beer_id,0]);
+			undoArr.splice(-1,1);
 		}
 	})//Undo button
 
 	//Redo button action
 	$("#btn_redo").on("click", function() {
-		addBeer(redoArr[(redoArr.length-1)]);
+		var beer_id = redoArr[(redoArr.length-1)][0];
+		var addSub = redoArr[(redoArr.length-1)][1];
+			if(addSub == 0){//redo sub 1 beer
+				addBeer(beer_id);
+				undoArr.push([beer_id,1]);
+			}
+			if(addSub == 1){//redo add 1 beer
+				subBeer(beer_id);
+				undoArr.push([beer_id,0]);
+		}
+		printObj(redoArr);
 		redoArr.splice(-1,1);
+		printObj(redoArr);
 	}) //Redo button
-
 }); //doc rdy
 
 // Search function
