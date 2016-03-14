@@ -2,7 +2,7 @@ var admin = "ervtod"; //admin Ervin Todd
 var user = "elepic";//user Elektra Pickle
 var undoArr = []; //Array for undos
 var redoArr = []; //Array for redos
-var nrCancelBeers = 0;
+var nrCancelBeers = [];
 var nrRmBeers = ["",0];
 var hidden = false;
 
@@ -50,7 +50,6 @@ function addBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $cart_beer = $("#cart").find("#c-"+beer_id);
 	if ($menu_beer.find(".beer__count").text() > 0) { //are there any beers available?
-
 		if ($cart_beer.length) {  //create new element
 			console.log("addBeer: "+$cart_beer.data("namn"));
 			var cart_beer_price = $cart_beer.data("price");
@@ -292,9 +291,8 @@ $(document).ready(function() {
 	//cancel button
 	$("#cart button.cancel").on("click", function() {
 		var beers = $("#cart .beer");
-		nrCancelBeers = 0;
 		$.each(beers, function(i, beer) {
-			nrCancelBeers = nrCancelBeers + beers.data("cartcount");
+			nrCancelBeers.push([$(this).data("id"), $(this).data("cartcount")]);
 			var $menu_beer = $("#b-"+$(beer).data("id"));
 			var $menu_beer_count = $menu_beer.find(".beer__count");
 			$menu_beer_count.text($menu_beer.data("count"));
@@ -400,23 +398,18 @@ $(document).ready(function() {
 	$("#btn_undo").on("click", function() {
 		var beer_id = undoArr[(undoArr.length-1)][0];
 		var addSub = undoArr[(undoArr.length-1)][1];
-		if(nrCancelBeers > 0){//undo cancel
-			/* TODO Undo Cancel
-			beerIDs = [];
-			for (i = 1; i <= nrCancelBeers; i++){//get beer IDs
-				beerIDs.push(undoArr[(undoArr.length-i)][0]);
-			}
-			printObj(beerIDs);
-			for (x = 0; x < beerIDs.length; x++){
-				printObj(beerIDs[x]);
-				addBeer(beerIDs[x]);
-				redoArr.push([beerIDs[x],1]);
+		if(nrCancelBeers.length > 0){//undo cancel
+			for (x = 0; x < nrCancelBeers.length; x++){
+				for(y = 0; y < nrCancelBeers[x][1]; y++){
+					printObj(nrCancelBeers[x]);
+					redoArr.push([nrCancelBeers[x],1]);
+					addBeer(nrCancelBeers[x][0]);
+				}
 			}
 			for (i = 0; i < nrCancelBeers; i++){
 				undoArr.splice(-1,1);
 			}
-			nrCancelBeers = 0;
-			*/
+			nrCancelBeers = [];
 		}
 
 		else if(nrRmBeers[1] > 0){//undo remove
@@ -431,7 +424,7 @@ $(document).ready(function() {
 			*/
 			for (i = 0; i < nrRmBeers[1]; i++){
 				addBeer(nrRmBeers[0]);
-				redoArr.push([beer_id,1]);
+				redoArr.push([nrRmBeers[0],1]);
 			}
 			for (i = 0; i < nrUndos; i++){
 				undoArr.splice(-1,1);
@@ -440,6 +433,7 @@ $(document).ready(function() {
 		}
 
 		else if(addSub == 0){//undo sub 1 beer
+			printObj("got here!");
 			addBeer(beer_id);
 			redoArr.push([beer_id,1]);
 			undoArr.splice(-1,1);
