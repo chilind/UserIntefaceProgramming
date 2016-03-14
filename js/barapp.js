@@ -400,6 +400,7 @@ $(document).ready(function() {
 		var addSub = undoArr[(undoArr.length-1)][1];
 		if(nrCancelBeers.length > 0){//undo cancel
 			for (x = 0; x < nrCancelBeers.length; x++){
+				removeBeer(nrCancelBeers[x][0]);//have to be runned here because Noa dont want to do it where it should be run..
 				for(y = 0; y < nrCancelBeers[x][1]; y++){
 					printObj(nrCancelBeers[x]);
 					redoArr.push([nrCancelBeers[x],1]);
