@@ -332,6 +332,10 @@ $(document).ready(function() {
 				});
 			}
 		}); //each
+		undoArr = []; //Array for undos
+		redoArr = []; //Array for redos
+		nrCancelBeers = [];
+		nrRmBeers = ["",0];		
 	}); //pay button
     //I took the liberty of using your buttons as menu examples, so I changed them to "a" instead of "button"
     /*
