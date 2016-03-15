@@ -5,6 +5,7 @@ LANGUAGE_SUPPORT.english = {
     Login:"Login",
     Please_login:"Please login",
     Bar_app: "Bar app",
+    SignOut:"Sign Out",
     Choose_your_drink: "Choose your drink",
     Beers: "Drinks",
     Your_drinks: "Your drinks",
@@ -22,5 +23,11 @@ LANGUAGE_SUPPORT.english = {
     Producer:"Producer",
     Show_beers:"Show beers that are out of stock",
     register_beer:"Add",
-    add_type:"Add another type"
+    add_type:"Add another type",
+    Username:"Username",
+    Password:"Password",
+    Search:"Search",
+    Name:"Name",
+    ShortDescription:"Short description",
+    Amount:"Amount"
 };

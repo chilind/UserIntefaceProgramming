@@ -39,12 +39,20 @@ var preferences = (function(){
     });
 
     function changeLanguage(name){
+        var selectedLanguage = LANGUAGE_SUPPORT[preferences.getItem("preferedLanguage")];
         var languageElements = $("[data-lang]");
         languageElements.each(function(index, element){
-            var languageElement = LANGUAGE_SUPPORT[preferences.getItem("preferedLanguage")][$(element).attr("data-lang")];
+            var languageElement = selectedLanguage[$(element).attr("data-lang")];
             if(languageElement != undefined){
                 $(element).text(languageElement);
             }
+        });
+        var languageAttributes = $("[data-lang-attr]");
+        languageAttributes.each(function(index, element){
+            var info = $(element).data("lang-attr");
+            $.each(info, function(key, value){
+                $(element).attr(key, selectedLanguage[value]);
+            });
         });
         prepareLanguageFlags(name);
     }

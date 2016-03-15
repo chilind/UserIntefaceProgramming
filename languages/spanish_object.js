@@ -4,6 +4,7 @@ LANGUAGE_SUPPORT.spanish = {
     Login:"Acceso",
     Please_login:"Por favor, ingrese",
     Bar_app: "Aplicación del bar",
+    SignOut:"Cerrar sesión",
     Choose_your_drink: "Escoge tu bebida",
     Beers: "Bebidas",
     Your_drinks: "Tu orden",
@@ -21,5 +22,11 @@ LANGUAGE_SUPPORT.spanish = {
     Producer:"Productor",
     Show_beers:"Mostrar cervezas no disponibles",
     register_beer:"Añadir",
-    add_type:"Agregar otra marca"
+    add_type:"Agregar otra marca",
+    Username:"Usuario",
+    Password:"Contraseña",
+    Search:"Búsqueda",
+    Name:"Nombre",
+    ShortDescription:"Descripción corta",
+    Amount:"Cantidad"
 };

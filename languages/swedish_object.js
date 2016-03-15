@@ -4,6 +4,7 @@ LANGUAGE_SUPPORT.swedish = {
     Login:"Logga in",
     Please_login:"Vänligen logga in",
     Bar_app: "Bar app",
+    SignOut:"Logga ut",
     Choose_your_drink: "Välj din drink",
     Beers: "Drycker",
     Your_drinks: "Dina drycker",
@@ -21,5 +22,11 @@ LANGUAGE_SUPPORT.swedish = {
     Producer:"Producent",
     Show_beers:"Visa öl som är slut på lager",
     register_beer:"Lägg till",
-    add_type:"Lägg en annan typ"
+    add_type:"Lägg en annan typ",
+    Username:"Användarnamn",
+    Password:"Lösenord",
+    Search:"Sök",
+    Name:"Namn",
+    ShortDescription:"Kort beskrivning",
+    Amount:"Mängd"
 };

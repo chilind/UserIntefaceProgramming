@@ -53,7 +53,7 @@
         <img data-langButton="english" src="languages/English.png" alt="English language" />
         <img data-langButton="swedish" src="languages/Swedish.png" alt="Swedish language" />
 				<img data-langButton="spanish" src="languages/Spanish.png" alt="Spanish language" />
-				<li><a href="login.html">Sign out</a></li>
+				<li><a data-lang="SignOut" href="login.html">Sign out</a></li>
 
       </div>
     </div>
@@ -73,7 +73,7 @@
 					<h3 class="beersRubric" data-lang="Beers">Beers</h3>
 				</div>
 				<div class="col-xs-4 form-group">
-					<input type="text" class="search form-control" placeholder="Search"/>
+					<input type="text" class="search form-control" data-lang-attr='{"placeholder":"Search"}' placeholder="Search"/>
 				</div>
 				<div class="col-xs-5">
 				  <label class="hideEmpty">
@@ -87,12 +87,12 @@
                     <div id="addBeer" class="mainControl adminPanel col-xs-12">
                         <h3 data-lang="add_type">Add another type</h3>
                         <div class="beer__left">
-                            <div class="beer__name"><input id="AdminBeerName" type="text" name="beer_name" placeholder="Name" /></div>
-                            <div class="beer__name2"><input id="AdminBeerName2" type="text" name="beer_name2" placeholder="Short description" /></div>
+                            <div class="beer__name"><input id="AdminBeerName" type="text" name="beer_name" data-lang-attr='{"placeholder":"Name"}' placeholder="Name" /></div>
+                            <div class="beer__name2"><input id="AdminBeerName2" type="text" name="beer_name2" data-lang-attr='{"placeholder":"ShortDescription"}' placeholder="Short description" /></div>
                         </div>
                         <div class="beer__right">
-                            <div class="beer__price"><input id="AdminPrice" type="number" min="1" step="any" name="beer_price" placeholder="Price" /></div>
-                            <div class="adminBeer__count"><input id="AdminCount" type="number" name="beer_name" placeholder="Amount" /></div>
+                            <div class="beer__price"><input id="AdminPrice" type="number" min="1" step="any" name="beer_price" data-lang-attr='{"placeholder":"Price"}' placeholder="Price" /></div>
+                            <div class="adminBeer__count"><input id="AdminCount" type="number" name="beer_name" data-lang-attr='{"placeholder":"Amount"}' placeholder="Amount" /></div>
                         </div>
                         <button data-lang="register_beer" onclick="clickAddBeerAdmin(event)">
                             Add
