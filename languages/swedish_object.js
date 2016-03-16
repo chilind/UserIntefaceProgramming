@@ -22,7 +22,7 @@ LANGUAGE_SUPPORT.swedish = {
     Producer:"Producent",
     Show_beers:"Visa öl som är slut på lager",
     register_beer:"Lägg till",
-    add_type:"Lägg en annan typ",
+    add_type:"Lägg till en ny typ",
     Username:"Användarnamn",
     Password:"Lösenord",
     Search:"Sök",

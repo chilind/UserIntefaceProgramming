@@ -87,14 +87,18 @@
                     <div id="addBeer" class="mainControl adminPanel col-xs-12">
                         <h3 data-lang="add_type">Add another type</h3>
                         <div class="beer__left">
-                            <div class="beer__name"><input id="AdminBeerName" type="text" name="beer_name" data-lang-attr='{"placeholder":"Name"}' placeholder="Name" /></div>
-                            <div class="beer__name2"><input id="AdminBeerName2" type="text" name="beer_name2" data-lang-attr='{"placeholder":"ShortDescription"}' placeholder="Short description" /></div>
+                        	<!-- beer__name -->
+                            <div class="addb"><input class="form-control" id="AdminBeerName" type="text" name="beer_name" data-lang-attr='{"placeholder":"Name"}' placeholder="Name" /></div>
+                            <!-- beer__name2 -->
+                            <div class="addb"><input class="form-control" id="AdminBeerName2" type="text" name="beer_name2" data-lang-attr='{"placeholder":"ShortDescription"}' placeholder="Short description" /></div>
                         </div>
                         <div class="beer__right">
-                            <div class="beer__price"><input id="AdminPrice" type="number" min="1" step="any" name="beer_price" data-lang-attr='{"placeholder":"Price"}' placeholder="Price" /></div>
-                            <div class="adminBeer__count"><input id="AdminCount" type="number" name="beer_name" data-lang-attr='{"placeholder":"Amount"}' placeholder="Amount" /></div>
+                        	<!-- beer__price -->
+                            <div class="addb"><input class="form-control" id="AdminPrice" type="number" min="1" step="any" name="beer_price" data-lang-attr='{"placeholder":"Price"}' placeholder="Price" /></div>
+                            <!-- adminBeer__count -->
+                            <div class="addb"><input class="form-control" id="AdminCount" type="number" name="beer_name" data-lang-attr='{"placeholder":"Amount"}' placeholder="Amount" /></div>
                         </div>
-                        <button data-lang="register_beer" onclick="clickAddBeerAdmin(event)">
+                        <button data-lang="register_beer" class="btn btn-default" onclick="clickAddBeerAdmin(event)">
                             Add
                         </button>
                     </div>

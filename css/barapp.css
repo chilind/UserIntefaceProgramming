@@ -240,6 +240,9 @@ ul.modal-list {
 	padding: 0;
 	list-style: none;
 }
+.addb {
+	margin: 0 5px 5px 0;
+}
 
 /*Admin panel*/
 .adminPanel{
@@ -253,12 +256,13 @@ body[data-admin="true"] .adminPanel{
 }
 body[data-admin="true"] .mainControl.adminPanel{
     background-color: white;
-    border: 1px dashed rgba(17, 68, 33, 0.98);
-    width: auto;
+    border: 1px dashed rgba(17, 68, 33, 0.75);
+    width: 95%;
     height: auto;
 }
 .adminPanel .beer__left, .mainControl.adminPanel .beer__right{
     width: auto;
+    float: left;
 }
 .mainControl.adminPanel > button{
     display: block;
