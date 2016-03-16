@@ -185,6 +185,10 @@ function clickBeer(event) {
 		var modal = $("#barModal");
 		modal.find(".modal-title").text(data.namn);
 		modal.find(".modal-title2").text(data.namn2);
+
+		var rnd = Math.floor(Math.random() * 3) + 1;
+		modal.find("#beerimg").attr('src', 'img/beer' + rnd + '.png');
+		
 		var modal_list = modal.find(".modal-list");
         //Obtains previously chosen language (lang.js) and stores the reference for use within this function
         var selectedLanguage = LANGUAGE_SUPPORT[preferences.getItem('preferedLanguage')];
