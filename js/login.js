@@ -8,7 +8,6 @@
     var pwd = document.forms["form-signin"]["password"].value;
 
     var admins = ["ervtod","hirchr","jorass","saskru","svetor"];
-    /*TODO: There are more users...*/
     var users = ["aamsta","anddar","ankov","aqulyn","aubbla","benfau","bratam","ceznew","dansch","didwat","domolh","edraug","einyam","elepic","eulcou","eusgor","felbar","felfra","fercrn","giamik","gollan","hyrlap","jacabb","janhei","jeaats","jershi","jovsit","karbly","katfab","kaywan","kenolg","krysan","larsch","lasnic","liatra","livzha","maihon","marpug","marsti","molbab","muhtof","nikpro","olislu","olubra","oludra","orapan","pauaaf","pomgra","prabar","rewes","schjou","shapet","sivan","steber","sulpen","sulstr","symzim","teojen","tohei","valpag","yevowe","zulgor"];
     var isUser = $.inArray(login,users);
     var isUserPwd = $.inArray(pwd,users);

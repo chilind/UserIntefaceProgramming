@@ -1,3 +1,6 @@
+/*
+*	Set global variables
+*/
 var admin = "ervtod"; //admin Ervin Todd
 var user = "elepic";//user Elektra Pickle
 var undoArr = []; //Array for undos
@@ -10,11 +13,18 @@ function printObj(obj) {
 	console.log(JSON.stringify(obj, null, 4));
 }
 
+/*
+* help function
+*	returns a rounded value with a precise amount of decimals
+*/
 function decimalRound(price, cartcount) {
 	// return +(price * cartcount).toFixed(2);
 	return Math.round((price * cartcount) * 100) / 100;
 }
 
+/*
+* Sets the "Sum" in the DOM to the sum of all beers
+*/
 function cartSum() {
 	var cartitems = $("#cart .beer");
 	var sum = 0;
@@ -24,6 +34,9 @@ function cartSum() {
 	$("#cart .sum span").text(sum.toFixed(2));
 }
 
+/*
+* Loops all beers and checks if each individual beer is sold out or not
+*/
 function checkSoldOut() {
 	var beers = $("#beers .beer");
 	$.each(beers, function(i, beer) {
@@ -35,7 +48,9 @@ function checkSoldOut() {
 	});
 }
 
-/*Function only to display (in console) if an admin or user is logged in*/
+/*
+* Function only to display (in console) if an admin or user is logged in
+*/
 window.onload = function adminOrUser(){
 	var isAdminOrUser = sessionStorage.getItem('adminOrUser');
 	/* document.getElementById("fooHolder").innerHTML = isAdminOrUser.toString(); */
@@ -45,7 +60,11 @@ window.onload = function adminOrUser(){
     }
 };
 
-
+/*
+* Called by primarily Drop (mouse drag action)
+* Puts a beer in the cart and removes a beer from the beer-menu
+* Prevents action if the beer is sold out
+*/
 function addBeer(beer_id) {
 	var $menu_beer = $("#b-"+beer_id);
 	var $cart_beer = $("#cart").find("#c-"+beer_id);
@@ -112,6 +131,10 @@ function addBeer(beer_id) {
 		}
 	}
 }
+
+/*
+* Removes ONE beer from the cart. If the beer count goes to 0, the beer is completely removed
+*/
 function subBeer(beer_id) {
 	var $cart_beer = $("#c-"+beer_id);
 	var $menu_beer = $("#beers").find("#b-"+beer_id);
@@ -139,6 +162,10 @@ function subBeer(beer_id) {
 	checkSoldOut();
 	cartSum();
 }
+
+/*
+*	When remove all is pressed. All beers in the cart is removed.
+*/
 function removeBeer(beer_id) {
 	var $cart_beer = $("#c-"+beer_id);
 	console.log("removeBeer: "+$cart_beer.data("namn"));
@@ -152,13 +179,17 @@ function removeBeer(beer_id) {
 	});
 }
 
-
-
-
+/*
+*	Prevents standard behaviour, allowing us to customize it as we wish.
+*/
 function allowDrop(event) {
 	console.log("allowDrop");
 	event.preventDefault();
 }
+
+/*
+*	Defines the behaviour when starting to drag an element
+*/
 function dragstart(event) {
 	console.log("dragstart");
 	if ($(event.target).data("count") > 0 && $(event.target).find(".beer__count").text() > 0) {
@@ -167,13 +198,20 @@ function dragstart(event) {
 		event.preventDefault();
 	}
 }
+
+/*
+*	Defines the behaviour from dropping an element into the cart
+*/
 function drop(event) {
 	console.log("drop");
 	var beer_id = event.dataTransfer.getData("text");
 	addBeer(beer_id);
 }
 
-
+/*
+*	Defines the behaviour when clicking a beer element in the beer menu
+* Brings forth a modal
+*/
 function clickBeer(event) {
 	var beer_id = $(event.currentTarget).data("id");
 	$.ajax({
@@ -188,7 +226,7 @@ function clickBeer(event) {
 
 		var rnd = Math.floor(Math.random() * 3) + 1;
 		modal.find("#beerimg").attr('src', 'img/beer' + rnd + '.png');
-		
+
 		var modal_list = modal.find(".modal-list");
         //Obtains previously chosen language (lang.js) and stores the reference for use within this function
         var selectedLanguage = LANGUAGE_SUPPORT[preferences.getItem('preferedLanguage')];
@@ -207,11 +245,18 @@ function clickBeer(event) {
 	});
 }
 
+/*
+* Bootstrap event listener on modal hidden
+* Removes content from modal
+*/
 $("#barModal").on("hidden.bs.modal", function(event) {
 	$(".modal-list").empty();
 });
 
-
+/*
+* Gets the inventory from the api
+* On success, put the beers in the DOM beer menu
+*/
 $.ajax({
 	url: 'http://pub.jamaica-inn.net/fpdb/api.php?username='+admin+'&password='+admin+'&action=inventory_get',
 	type: 'GET'
@@ -260,6 +305,10 @@ $.ajax({
 .error(function(xhr, status, error) {
 	console.log(xhr+", "+status+", "+error);
 });
+
+/*
+* Modifies the quantity of a beer
+*/
 function modifyQuantity(event){
     event.stopPropagation();
     event.preventDefault();
@@ -277,7 +326,10 @@ function modifyQuantity(event){
 }
 
 
-
+/*
+*	Runs when the DOM has finished loading
+* Binds a scroll event listener so that the beer cart will follow the screen when scrolling
+*/
 $(document).ready(function() {
 	var cart = $("#cart");
 	var cart_offset = cart.offset().top;
@@ -339,7 +391,7 @@ $(document).ready(function() {
 		undoArr = []; //Array for undos
 		redoArr = []; //Array for redos
 		nrCancelBeers = [];
-		nrRmBeers = ["",0];		
+		nrRmBeers = ["",0];
 	}); //pay button
     //I took the liberty of using your buttons as menu examples, so I changed them to "a" instead of "button"
     /*
@@ -402,6 +454,9 @@ $(document).ready(function() {
 	}); //test4
     */
 
+		/*
+		* When pressing the undo button, a undo action is performed
+		*/
 	//Undo button action
 	$("#btn_undo").on("click", function() {
 		var beer_id = undoArr[(undoArr.length-1)][0];
@@ -455,6 +510,9 @@ $(document).ready(function() {
 		}
 	})//Undo button
 
+	/*
+	* When pressing the redo button, a redo action is performed
+	*/
 	//Redo button action
 	$("#btn_redo").on("click", function() {
 		var beer_id = redoArr[(redoArr.length-1)][0];
@@ -473,6 +531,9 @@ $(document).ready(function() {
 	}) //Redo button
 }); //doc rdy
 
+/*
+* Defines the ability to search all the beers.
+*/
 // Search function
 $(".search").keyup(function() {
   $(".beer").each(function() {
@@ -503,6 +564,10 @@ $(".search").keyup(function() {
   });
 });
 
+/*
+* Hides all the beers that are out of stock
+* Is a checkbox
+*/
 // Hide out of stock beer
 $('.hideEmpty :checkbox').change(function() {
 	if ($(this).is(':checked')) {
@@ -525,6 +590,11 @@ $('.hideEmpty :checkbox').change(function() {
 		})
   }
 });
+
+/*
+*	Adds a custom beer.
+* Only works as admin
+*/
 //Add beer button function for the admin
 var clickAddBeerAdmin = (function(){
     var customID = 0;
