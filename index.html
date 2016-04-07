@@ -35,29 +35,27 @@
     <link rel="stylesheet" type="text/css" href="css/lang.css">
 </head>
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img src="img/logo.png" /><span data-lang="The_Flying_Dutchman">The Flying Dutchman</span></a>
-      </div>
-						<!--
-            <ul class="nav navbar-nav">
-								<li class="active"><a href="#" id="test1">payments_get</a></li>
-                <li><a href="#" id="test2">iou_get</a></li>
-                <li><a href="#" id="test3">add</a></li>
-                <li><a href="#" id="test4">payments_get</a></li>
-						</ul>
-					-->
+    <!-- Navigation bar located at the top -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        <!-- Logo (home button) -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="img/logo.png" />
+                <!-- data-lang attr Every string is taken from the languages files. These values are overriden -->
+                <span data-lang="The_Flying_Dutchman">The Flying Dutchman</span>
+            </a>
+        </div>
+        <!-- Language buttons (flags) -->
+        <div class="chooseLanguage nav navbar-nav pull-right">
+            <img data-langButton="english" src="languages/English.png" alt="English language" />
+            <img data-langButton="swedish" src="languages/Swedish.png" alt="Swedish language" />
+            <img data-langButton="spanish" src="languages/Spanish.png" alt="Spanish language" />
+            <li><a data-lang="SignOut" href="login.html">Sign out</a></li>
+        </div>
+        </div>
+    </nav>
 
-    	<div class="chooseLanguage nav navbar-nav pull-right">
-        <img data-langButton="english" src="languages/English.png" alt="English language" />
-        <img data-langButton="swedish" src="languages/Swedish.png" alt="Swedish language" />
-				<img data-langButton="spanish" src="languages/Spanish.png" alt="Spanish language" />
-				<li><a data-lang="SignOut" href="login.html">Sign out</a></li>
-
-      </div>
-    </div>
-	</nav>
+    <!-- Title bar -->
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -66,9 +64,12 @@
 		</div>
 	</div>
 
+    <!-- Main content -->
 	<div class="container" id="content">
+
 		<div class="row">
-			<div class="col-xs-8" id="rubric">
+			<!-- Available Beer list -->
+            <div class="col-xs-8" id="rubric">
 				<div class="col-xs-3">
 					<h3 class="beersRubric" data-lang="Beers">Beers</h3>
 				</div>
@@ -104,6 +105,8 @@
                     </div>
 				</div>
 			</div>
+
+            <!-- Drop Target, Shopping list -->
 			<div class="col-xs-4" id="cart" ondragover="allowDrop(event)" ondrop="drop(event)">
 				<div class="cart__header">
 					<h3 data-lang="Your_drinks">Your drinks</h3>
@@ -131,7 +134,7 @@
 		</div>
 	</div>
 
-	<!-- barModal -->
+	<!-- barModal, used for the dialog box that show the details -->
 	<div class="modal fade" id="barModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -144,19 +147,18 @@
 		      <div class="beerimg"><img id="beerimg" src=""></div>
 		      <ul class="modal-list"></ul>
 		  </div>
-<!-- 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div> -->
 	    </div>
 	  </div>
 	</div>
 
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- First load the languages (English is default) -->
 <script type="text/javascript" src="languages/english_object.js"></script>
 <script type="text/javascript" src="languages/spanish_object.js"></script>
 <script type="text/javascript" src="languages/swedish_object.js"></script>
 <script type="text/javascript" src="js/lang.js"></script>
+    <!-- Second functionality -->
 <script type="text/javascript" src="js/barapp.js"></script>
 </body>
 </html>
