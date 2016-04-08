@@ -393,71 +393,10 @@ $(document).ready(function() {
 		nrCancelBeers = [];
 		nrRmBeers = ["",0];
 	}); //pay button
-    //I took the liberty of using your buttons as menu examples, so I changed them to "a" instead of "button"
-    /*
-	$("a#test1").on("click", function() { //payments_get_all
-		$.ajax({
-			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+admin+"&password="+admin+"&action=payments_get_all",
-			type: 'GET'
-		})
-		.done(function(data) {
-			printObj(data);
-		})
-		.error(function(xhr, status, error) {
-			console.log(xhr+", "+status+", "+error);
-		});
-	}); //test1
-	$("a#test2").on("click", function() { //iou_get
-		$.ajax({
-			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+user+"&action=iou_get",
-			type: 'GET'
-		})
-		.done(function(data) {
-			printObj(data);
-		})
-		.error(function(xhr, status, error) {
-			console.log(xhr+", "+status+", "+error);
-		})
-		.fail(function() {
-			console.log("fail");
-		});
-	}); //test2
-	$("a#test3").on("click", function() { //inventory_append
-		$.ajax({
-			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+admin+"&password="+admin+"&action=inventory_append&beer_id=154903&amount=1&price=14.10",
-			type: 'POST'
-		})
-		.done(function(data) {
-			printObj(data);
-		})
-		.error(function(xhr, status, error) {
-			console.log(xhr+", "+status+", "+error);
-		})
-		.fail(function() {
-			console.log("fail");
-		});
-	}); //test3
-	$("a#test4").on("click", function() { //payments_get
-		$.ajax({
-			url:  "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+user+"&action=payments_get",
-			type: 'POST',
-		})
-		.done(function(data) {
-			printObj(data);
-		})
-		.error(function(xhr, status, error) {
-			console.log(xhr+", "+status+", "+error);
-		})
-		.fail(function() {
-			console.log("fail");
-		});
-	}); //test4
-    */
 
-		/*
-		* When pressing the undo button, a undo action is performed
-		*/
-	//Undo button action
+	/*
+	* When pressing the undo button, a undo action is performed
+	*/
 	$("#btn_undo").on("click", function() {
 		var beer_id = undoArr[(undoArr.length-1)][0];
 		var addSub = undoArr[(undoArr.length-1)][1];
@@ -478,14 +417,7 @@ $(document).ready(function() {
 
 		else if(nrRmBeers[1] > 0){//undo remove
 			nrUndos = nrRmBeers[1];
-			/*
-			abc = [];
-			for (i = 0; i < undoArr.length; i++){
-				if(undoArr[i][0] == nrRmBeers[0] && undoArr[i][1] == 1){
-					abc.push(i);
-				};
-			};
-			*/
+
 			for (i = 0; i < nrRmBeers[1]; i++){
 				addBeer(nrRmBeers[0]);
 				redoArr.push([nrRmBeers[0],1]);
